@@ -1,0 +1,2 @@
+Yaklaşık maliyet dosyalarınızı (PDF, Excel, ZIP...) bu klasöre koyun.
+Ardından js/data.js içinde url alanına "dosyalar/dosya-adi.pdf" şeklinde yolunu yazın.
