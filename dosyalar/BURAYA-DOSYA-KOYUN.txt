@@ -1,2 +1,3 @@
-Yaklaşık maliyet dosyalarınızı (PDF, Excel, ZIP...) bu klasöre koyun.
-Ardından js/data.js içinde url alanına "dosyalar/dosya-adi.pdf" şeklinde yolunu yazın.
+Yaklaşık maliyet dosyalarını ihalenin İKN numarasıyla açılan klasöre koyun.
+Örnek: dosyalar/2026-963707/icmal.pdf  (İKN içindeki "/" yerine "-")
+Sonra: python3 tools/build_data.py

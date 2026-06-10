@@ -1,53 +1,57 @@
 # Yaklaşık Maliyet Portalı
 
-İhale ve yarışma ilanlarını kart görünümünde listeleyen, her ilanın yanındaki
-**"Yaklaşık Maliyet"** butonuna basıldığında o ilana ait yaklaşık maliyet
-dosyalarını (PDF, Excel, ZIP vb.) indirilebilir şekilde gösteren statik bir web sitesi.
+EKAP ihale kartlarını birebir görünümle listeleyen ve her ihale için
+**"Yaklaşık Maliyet"** dosyalarını (PDF, Excel, ZIP...) indirilebilir şekilde
+sunan statik web sitesi. İlanlar, EKAP'tan kopyalanan kart inspect'lerinden
+otomatik üretilir.
 
 ## Çalıştırma
 
-Hiçbir kurulum gerekmez — `index.html` dosyasını tarayıcıda açmanız yeterli.
-İsterseniz basit bir sunucuyla da açabilirsiniz:
+Kurulum gerekmez — `index.html` dosyasını tarayıcıda açmanız yeterli.
 
 ```bash
-python3 -m http.server 8000
-# http://localhost:8000
+python3 -m http.server 8000   # istenirse: http://localhost:8000
 ```
 
-## Yeni ilan ve dosya ekleme
+## Yeni ihale ekleme (EKAP inspect ile)
 
-1. Yaklaşık maliyet dosyalarını `dosyalar/` klasörüne koyun.
-2. `js/data.js` içindeki `ILANLAR` listesine yeni bir kayıt ekleyin:
+1. EKAP'ta ihale kartının inspect'ini (HTML) kopyalayıp `inspects/` klasörüne
+   `.txt` olarak kaydedin (örn. `inspects/963707.txt`).
+2. Yaklaşık maliyet dosyalarını İKN ile adlandırılmış klasöre koyun
+   (İKN'deki `/` yerine `-`):
 
-```js
-{
-  id: 5,
-  no: "2026/123456",
-  baslik: "İlanın başlığı",
-  kurum: "KURUM ADI (BÜYÜK HARF)",
-  kurumKisa: "KISA AD",        // logo dairesinde görünür
-  logoRenk: "#2e7d4f",
-  sehir: "MUĞLA",
-  tarih: "01.09.2026 17:00",
-  durum: "acik",               // "acik" veya "kapali"
-  tur: "yapim",                // "yapim" | "hizmet" | "mal"
-  turEtiket: "Yapım",
-  kategori: "Açık İhale",
-  dosyalar: [
-    { ad: "Yaklaşık Maliyet İcmali", tip: "pdf", boyut: "1 MB",
-      tarih: "01.08.2026", url: "dosyalar/icmal.pdf" }
-  ]
-}
-```
+   ```
+   dosyalar/2026-963707/yaklasik-maliyet-icmali.pdf
+   dosyalar/2026-963707/hesap-cetveli.xlsx
+   ```
 
-Desteklenen dosya tipi rozetleri: `pdf`, `xlsx`, `docx`, `zip`.
+3. Üreticiyi çalıştırın:
+
+   ```bash
+   python3 tools/build_data.py
+   ```
+
+Script inspect'ten İKN, başlık, idare, il/tarih, rozetleri (durum, tür, usul)
+ve kurum logosunun EKAP adresini çıkarır; `dosyalar/<ikn>/` içindeki dosyaları
+boyut ve tarihleriyle birlikte karta bağlar ve `js/data.js`'i baştan yazar.
+Aynı İKN'ye ait birden fazla inspect varsa tekilleştirilir; liste ihale
+tarihine göre sıralanır.
 
 ## Dosya yapısı
 
 ```
-index.html      Ana sayfa (ilan listesi + yaklaşık maliyet penceresi)
-css/style.css   Tüm görünüm
-js/data.js      İlan ve dosya verileri (içeriği buradan yönetirsiniz)
-js/app.js       Listeleme, arama, filtre ve pencere mantığı
-dosyalar/       Yaklaşık maliyet dosyalarını buraya koyun
+index.html           Ana sayfa
+css/style.css        Görünüm
+js/app.js            Listeleme, arama, filtre, yaklaşık maliyet penceresi
+js/data.js           ÜRETİLİR — elle düzenlemeyin
+tools/build_data.py  inspect → data.js dönüştürücü
+inspects/            EKAP kart inspect'leri (.txt)
+dosyalar/<ikn>/      İhale başına yaklaşık maliyet dosyaları
 ```
+
+## Notlar
+
+- Kurum logoları doğrudan EKAP'tan (`ekapv2.kik.gov.tr`) yüklenir; logo
+  yüklenemezse kurum adının baş harfleri gösterilir.
+- Kart inspect'inde ihale detay bağlantısı bulunmadığından megafon (İlan Gör)
+  butonu şimdilik EKAP ana sayfasına gider.

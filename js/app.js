@@ -11,6 +11,8 @@
   const modalFiles = document.getElementById("ymFileList");
   const modalClose = document.getElementById("ymModalClose");
 
+  const EKAP_URL = "https://ekapv2.kik.gov.tr";
+
   let activeFilter = "hepsi";
   let query = "";
 
@@ -22,17 +24,26 @@
   };
 
   function escapeHtml(s) {
-    return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
   function matches(ilan) {
     if (activeFilter === "acik" && ilan.durum !== "acik") return false;
-    if (["yapim", "hizmet", "mal"].includes(activeFilter) && ilan.tur !== activeFilter) return false;
+    if (["yapim", "hizmet", "mal", "danismanlik"].includes(activeFilter) && ilan.tur !== activeFilter) return false;
     if (query) {
-      const hay = (ilan.no + " " + ilan.baslik + " " + ilan.kurum).toLocaleLowerCase("tr");
+      const hay = (ilan.no + " " + ilan.baslik + " " + ilan.kurum + " " + ilan.sehir).toLocaleLowerCase("tr");
       if (!hay.includes(query)) return false;
     }
     return true;
+  }
+
+  function logoHtml(ilan) {
+    const fallback = '<span class="kurum-initials">' + escapeHtml(ilan.kurumKisa) + "</span>";
+    if (!ilan.logoUrl) return '<div class="kurum-logo">' + fallback + "</div>";
+    return '<div class="kurum-logo">' +
+      '<img src="' + escapeHtml(ilan.logoUrl) + '" alt="" loading="lazy" ' +
+      "onerror=\"this.style.display='none';this.nextElementSibling.style.display='grid'\">" +
+      '<span class="kurum-initials" style="display:none">' + escapeHtml(ilan.kurumKisa) + "</span></div>";
   }
 
   function render() {
@@ -42,14 +53,12 @@
 
     listEl.innerHTML = visible.map(ilan => `
       <article class="ilan-card">
-        <div class="kurum-logo" style="background:${ilan.logoRenk}">${escapeHtml(ilan.kurumKisa)}</div>
+        ${logoHtml(ilan)}
         <div class="ilan-body">
           <div class="badge-row">
-            <span class="badge ${ilan.durum === "acik" ? "badge-acik" : "badge-kapali"}">
-              ${ilan.durum === "acik" ? "Katılıma Açık" : "Sonuçlandı"}
-            </span>
-            <span class="badge badge-tur">${escapeHtml(ilan.turEtiket)}</span>
-            <span class="badge badge-kategori">${escapeHtml(ilan.kategori)}</span>
+            <span class="badge ${ilan.durum === "acik" ? "badge-acik" : "badge-kapali"}">${escapeHtml(ilan.durumEtiket || (ilan.durum === "acik" ? "Katılıma Açık" : "Sonuçlandı"))}</span>
+            <span class="badge badge-${escapeHtml(ilan.tur)}">${escapeHtml(ilan.turEtiket)}</span>
+            ${ilan.kategori ? '<span class="badge badge-kategori">' + escapeHtml(ilan.kategori) + "</span>" : ""}
           </div>
           <h2 class="ilan-title">
             <span class="ilan-no">${escapeHtml(ilan.no)}</span>
@@ -63,7 +72,7 @@
             <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
               ${ICONS.money} Yaklaşık Maliyet <span class="count">${ilan.dosyalar.length}</span>
             </button>
-            <button class="icon-btn" title="Duyuru">${ICONS.megaphone}</button>
+            <a class="icon-btn" href="${EKAP_URL}" target="_blank" rel="noopener" title="EKAP'ta İlan Gör">${ICONS.megaphone}</a>
             <button class="icon-btn" title="Sabitle">${ICONS.pin}</button>
           </div>
         </div>
@@ -74,16 +83,20 @@
   function openModal(ilan) {
     modalTitle.textContent = "Yaklaşık Maliyet Dosyaları";
     modalSubtitle.textContent = ilan.no + " — " + ilan.baslik;
-    modalFiles.innerHTML = ilan.dosyalar.map(d => `
-      <a class="file-row" href="${escapeHtml(d.url)}" ${d.url !== "#" ? "download" : ""}>
-        <span class="file-icon ${d.tip}">${d.tip.toUpperCase()}</span>
-        <span class="file-info">
-          <span class="file-name">${escapeHtml(d.ad)}</span><br>
-          <span class="file-meta">${escapeHtml(d.boyut)} · Yüklenme: ${escapeHtml(d.tarih)}</span>
-        </span>
-        <span class="file-dl">${ICONS.download}</span>
-      </a>
-    `).join("");
+    if (ilan.dosyalar.length === 0) {
+      modalFiles.innerHTML = '<p class="no-files">Bu ihale için henüz yaklaşık maliyet dosyası eklenmedi.</p>';
+    } else {
+      modalFiles.innerHTML = ilan.dosyalar.map(d => `
+        <a class="file-row" href="${escapeHtml(d.url)}" download>
+          <span class="file-icon ${escapeHtml(d.tip)}">${escapeHtml(d.tip.toUpperCase())}</span>
+          <span class="file-info">
+            <span class="file-name">${escapeHtml(d.ad)}</span><br>
+            <span class="file-meta">${escapeHtml(d.boyut)} · Yüklenme: ${escapeHtml(d.tarih)}</span>
+          </span>
+          <span class="file-dl">${ICONS.download}</span>
+        </a>
+      `).join("");
+    }
     modal.hidden = false;
     document.body.style.overflow = "hidden";
   }
