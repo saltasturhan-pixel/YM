@@ -16,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 INSPECTS = ROOT / "inspects"
 DOSYALAR = ROOT / "dosyalar"
+LOGOS = ROOT / "logos"
 OUT = ROOT / "js" / "data.js"
 
 TUR_MAP = {
@@ -37,6 +38,10 @@ def parse_inspect(htm):
     m = re.search(r'background-image:\s*url\((?:&quot;|\'|")?(https?://[^"\')&]+)', htm)
     if m:
         logo = m.group(1)
+        # logos/ klasöründe aynı adla yerel kopya varsa onu kullan
+        yerel = LOGOS / logo.rsplit("/", 1)[-1]
+        if yerel.is_file():
+            logo = "logos/" + yerel.name
 
     durum_txt = badges[0] if badges else ""
     tur_txt = badges[1] if len(badges) > 1 else ""
