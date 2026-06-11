@@ -11,15 +11,16 @@
   const modalFiles = document.getElementById("ymFileList");
   const modalClose = document.getElementById("ymModalClose");
 
-  const EKAP_URL = "https://ekapv2.kik.gov.tr";
+  const detayModal = document.getElementById("detayModal");
+  const detaySubtitle = document.getElementById("detayModalSubtitle");
+  const detayBody = document.getElementById("detayBody");
+  const detayClose = document.getElementById("detayModalClose");
 
   let activeFilter = "hepsi";
   let query = "";
 
   const ICONS = {
     download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',
-    megaphone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-7v18L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>',
-    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>',
     money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M2 10h.01M22 14h-.01"/></svg>'
   };
 
@@ -55,26 +56,24 @@
       <article class="ilan-card">
         ${logoHtml(ilan)}
         <div class="ilan-body">
-          <div class="badge-row">
-            <span class="badge ${ilan.durum === "acik" ? "badge-acik" : "badge-kapali"}">${escapeHtml(ilan.durumEtiket || (ilan.durum === "acik" ? "Katılıma Açık" : "Sonuçlandı"))}</span>
-            <span class="badge badge-${escapeHtml(ilan.tur)}">${escapeHtml(ilan.turEtiket)}</span>
-            ${ilan.kategori ? '<span class="badge badge-kategori">' + escapeHtml(ilan.kategori) + "</span>" : ""}
+          <div class="first-row">
+            <div class="badge-row">
+              <span class="badge ${ilan.durum === "acik" ? "badge-acik" : "badge-kapali"}">${escapeHtml(ilan.durumEtiket || (ilan.durum === "acik" ? "Katılıma Açık" : "Sonuçlandı"))}</span>
+              <span class="badge badge-${escapeHtml(ilan.tur)}">${escapeHtml(ilan.turEtiket)}</span>
+              ${ilan.kategori ? '<span class="badge badge-kategori">' + escapeHtml(ilan.kategori) + "</span>" : ""}
+            </div>
+            <div class="ilan-meta">
+              <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
+              <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
+                ${ICONS.money} Yaklaşık Maliyet <span class="count">${ilan.dosyalar.length}</span>
+              </button>
+            </div>
           </div>
           <h2 class="ilan-title">
             <span class="ilan-no">${escapeHtml(ilan.no)}</span>
-            <span>${escapeHtml(ilan.baslik)}</span>
+            <span class="ilan-baslik" data-detay="${ilan.id}" title="${escapeHtml(ilan.baslik)}">${escapeHtml(ilan.baslik)}</span>
           </h2>
           <p class="ilan-kurum">${escapeHtml(ilan.kurum)}</p>
-        </div>
-        <div class="ilan-side">
-          <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
-          <div class="ilan-actions">
-            <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
-              ${ICONS.money} Yaklaşık Maliyet <span class="count">${ilan.dosyalar.length}</span>
-            </button>
-            <a class="icon-btn" href="${EKAP_URL}" target="_blank" rel="noopener" title="EKAP'ta İlan Gör">${ICONS.megaphone}</a>
-            <button class="icon-btn" title="Sabitle">${ICONS.pin}</button>
-          </div>
         </div>
       </article>
     `).join("");
@@ -106,16 +105,56 @@
     document.body.style.overflow = "";
   }
 
+  function openDetay(ilan) {
+    detaySubtitle.textContent = ilan.no + " — " + ilan.baslik;
+    const satirlar = [
+      ["İhale Kayıt Numarası (İKN)", ilan.no],
+      ["İhale Adı", ilan.baslik],
+      ["İhaleyi Yapan İdare", ilan.kurum],
+      ["İhale Türü", ilan.turEtiket],
+      ["İhale Usulü", ilan.kategori],
+      ["İhale Durumu", ilan.durumEtiket],
+      ["İhale Yeri", ilan.sehir],
+      ["İhale Tarih - Saati", ilan.tarih],
+      ["Yaklaşık Maliyet Dosyası", ilan.dosyalar.length + " adet"]
+    ];
+    detayBody.innerHTML = '<table class="detay-table">' +
+      satirlar.filter(s => s[1]).map(s =>
+        "<tr><th>" + escapeHtml(s[0]) + "</th><td>" + escapeHtml(s[1]) + "</td></tr>"
+      ).join("") + "</table>" +
+      '<p class="detay-note">Ayrıntılı ilan metni için EKAP üzerinden İKN ile sorgulama yapabilirsiniz.</p>';
+    detayModal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDetay() {
+    detayModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
   listEl.addEventListener("click", e => {
-    const btn = e.target.closest("[data-ym]");
-    if (!btn) return;
-    const ilan = ILANLAR.find(i => i.id === Number(btn.dataset.ym));
-    if (ilan) openModal(ilan);
+    const ymBtn = e.target.closest("[data-ym]");
+    if (ymBtn) {
+      const ilan = ILANLAR.find(i => i.id === Number(ymBtn.dataset.ym));
+      if (ilan) openModal(ilan);
+      return;
+    }
+    const baslik = e.target.closest("[data-detay]");
+    if (baslik) {
+      const ilan = ILANLAR.find(i => i.id === Number(baslik.dataset.detay));
+      if (ilan) openDetay(ilan);
+    }
   });
 
   modalClose.addEventListener("click", closeModal);
   modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  detayClose.addEventListener("click", closeDetay);
+  detayModal.addEventListener("click", e => { if (e.target === detayModal) closeDetay(); });
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    if (!modal.hidden) closeModal();
+    if (!detayModal.hidden) closeDetay();
+  });
 
   searchEl.addEventListener("input", () => {
     query = searchEl.value.trim().toLocaleLowerCase("tr");
