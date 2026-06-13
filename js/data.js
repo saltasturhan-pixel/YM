@@ -188,13 +188,6 @@ const ILANLAR = [
         "url": "dosyalar/2026-965289/02_FDU_Dogrulama.pdf"
       },
       {
-        "ad": "02_FDU_Dogrulama_Tablo",
-        "tip": "xlsx",
-        "boyut": "29 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/02_FDU_Dogrulama_Tablo.xlsx"
-      },
-      {
         "ad": "03_Yaklasik_Maliyet_Cetveli",
         "tip": "xlsx",
         "boyut": "38 KB",
