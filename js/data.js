@@ -189,10 +189,10 @@ const ILANLAR = [
       },
       {
         "ad": "03_Yaklasik_Maliyet_Cetveli",
-        "tip": "xlsx",
-        "boyut": "38 KB",
+        "tip": "pdf",
+        "boyut": "283 KB",
         "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/03_Yaklasik_Maliyet_Cetveli.xlsx"
+        "url": "dosyalar/2026-965289/03_Yaklasik_Maliyet_Cetveli.pdf"
       }
     ]
   },
