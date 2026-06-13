@@ -5,12 +5,6 @@
   const countEl = document.getElementById("resultCount");
   const emptyEl = document.getElementById("emptyState");
 
-  const modal = document.getElementById("ymModal");
-  const modalTitle = document.getElementById("ymModalTitle");
-  const modalSubtitle = document.getElementById("ymModalSubtitle");
-  const modalFiles = document.getElementById("ymFileList");
-  const modalClose = document.getElementById("ymModalClose");
-
   const detayModal = document.getElementById("detayModal");
   const detaySubtitle = document.getElementById("detayModalSubtitle");
   const detayBody = document.getElementById("detayBody");
@@ -20,7 +14,6 @@
   let query = "";
 
   const ICONS = {
-    download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>',
     money: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M2 10h.01M22 14h-.01"/></svg>'
   };
 
@@ -79,30 +72,13 @@
     `).join("");
   }
 
-  function openModal(ilan) {
-    modalTitle.textContent = "Yaklaşık Maliyet Dosyaları";
-    modalSubtitle.textContent = ilan.no + " — " + ilan.baslik;
-    if (ilan.dosyalar.length === 0) {
-      modalFiles.innerHTML = '<p class="no-files">Bu ihale için henüz yaklaşık maliyet dosyası eklenmedi.</p>';
+  function openYaklasikMaliyet(ilan) {
+    if (window.YMViewer) {
+      window.YMViewer.open(ilan);
     } else {
-      modalFiles.innerHTML = ilan.dosyalar.map(d => `
-        <a class="file-row" href="${escapeHtml(d.url)}" download>
-          <span class="file-icon ${escapeHtml(d.tip)}">${escapeHtml(d.tip.toUpperCase())}</span>
-          <span class="file-info">
-            <span class="file-name">${escapeHtml(d.ad)}</span><br>
-            <span class="file-meta">${escapeHtml(d.boyut)} · Yüklenme: ${escapeHtml(d.tarih)}</span>
-          </span>
-          <span class="file-dl">${ICONS.download}</span>
-        </a>
-      `).join("");
+      // viewer.js (module) henüz yüklenmediyse dosyayı indirmeye düş
+      if (ilan.dosyalar[0]) window.location.href = ilan.dosyalar[0].url;
     }
-    modal.hidden = false;
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeModal() {
-    modal.hidden = true;
-    document.body.style.overflow = "";
   }
 
   function openDetay(ilan) {
@@ -136,7 +112,7 @@
     const ymBtn = e.target.closest("[data-ym]");
     if (ymBtn) {
       const ilan = ILANLAR.find(i => i.id === Number(ymBtn.dataset.ym));
-      if (ilan) openModal(ilan);
+      if (ilan) openYaklasikMaliyet(ilan);
       return;
     }
     const baslik = e.target.closest("[data-detay]");
@@ -146,14 +122,10 @@
     }
   });
 
-  modalClose.addEventListener("click", closeModal);
-  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
   detayClose.addEventListener("click", closeDetay);
   detayModal.addEventListener("click", e => { if (e.target === detayModal) closeDetay(); });
   document.addEventListener("keydown", e => {
-    if (e.key !== "Escape") return;
-    if (!modal.hidden) closeModal();
-    if (!detayModal.hidden) closeDetay();
+    if (e.key === "Escape" && !detayModal.hidden) closeDetay();
   });
 
   searchEl.addEventListener("input", () => {

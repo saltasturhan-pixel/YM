@@ -5,13 +5,30 @@ EKAP ihale kartlarını birebir görünümle listeleyen ve her ihale için
 sunan statik web sitesi. İlanlar, EKAP'tan kopyalanan kart inspect'lerinden
 otomatik üretilir.
 
+## Belge görüntüleyici (gömülü, tam ekran)
+
+"Yaklaşık Maliyet" düğmesine basılınca ihalenin belgeleri uygulamanın
+**içinde tam ekran** açılır; kullanıcı sayfada gezinir, yakınlaştırır, indirir.
+Google Drive gibi dışa bağımlı değildir, mobil uyumludur.
+
+- **PDF** → PDF.js ile sayfa sayfa render (`vendor/pdf.min.mjs`)
+- **Excel (.xlsx/.xls)** → SheetJS ile sayfa sekmeli tablo (`vendor/xlsx.full.min.js`)
+- **Word (.docx)** → docx-preview ile sayfa görünümü (`vendor/docx-preview.min.js`)
+
+Kütüphaneler `vendor/` altında yerel tutulur; internet olmadan da çalışır.
+
 ## Çalıştırma
 
-Kurulum gerekmez — `index.html` dosyasını tarayıcıda açmanız yeterli.
+Belge görüntüleyici ES modülleri ve `fetch` kullandığından `index.html`'i
+**çift tıklayarak değil, bir sunucu üzerinden** açın (yoksa tarayıcı dosyaları
+güvenlik nedeniyle engeller):
 
 ```bash
-python3 -m http.server 8000   # istenirse: http://localhost:8000
+python3 -m http.server 8000   # sonra: http://localhost:8000
 ```
+
+Mobil cihazlardan erişim için en pratiği siteyi **GitHub Pages** ile
+yayınlamaktır (ücretsiz bir `https://<kullanıci>.github.io/ym` adresi verir).
 
 ## Yeni ihale ekleme (EKAP inspect ile)
 

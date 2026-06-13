@@ -95,7 +95,29 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 6,
     "kurumKisa": "KGM",
-    "dosyalar": []
+    "dosyalar": [
+      {
+        "ad": "Yaklasik-Maliyet-Aciklama-Raporu",
+        "tip": "docx",
+        "boyut": "8 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-963707/Yaklasik-Maliyet-Aciklama-Raporu.docx"
+      },
+      {
+        "ad": "Yaklasik-Maliyet-Hesap-Cetveli",
+        "tip": "xlsx",
+        "boyut": "17 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-963707/Yaklasik-Maliyet-Hesap-Cetveli.xlsx"
+      },
+      {
+        "ad": "Yaklasik-Maliyet-Icmali",
+        "tip": "pdf",
+        "boyut": "1 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-963707/Yaklasik-Maliyet-Icmali.pdf"
+      }
+    ]
   },
   {
     "no": "2026/909878",

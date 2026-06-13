@@ -207,6 +207,111 @@ body {
 }
 .modal-note { font-size: 12px; color: var(--muted); }
 
+/* ===== Tam ekran belge görüntüleyici ===== */
+.viewer[hidden] { display: none; }
+.viewer {
+  position: fixed; inset: 0; z-index: 200;
+  background: #f0f1f4;
+  display: flex; flex-direction: column;
+}
+.viewer-bar {
+  flex: 0 0 auto;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: var(--text); color: #fff;
+}
+.viewer-close {
+  border: 0; background: rgba(255,255,255,.14); color: #fff;
+  width: 38px; height: 38px; border-radius: 9px;
+  font-size: 20px; cursor: pointer; flex-shrink: 0;
+}
+.viewer-close:hover { background: rgba(255,255,255,.25); }
+.viewer-title { flex: 1; min-width: 0; line-height: 1.25; }
+.viewer-title strong { display: block; font-size: 13px; opacity: .7; }
+.viewer-title span {
+  display: block; font-size: 15px; font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.viewer-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.viewer-zoom {
+  border: 0; background: rgba(255,255,255,.14); color: #fff;
+  width: 38px; height: 38px; border-radius: 9px; font-size: 20px; cursor: pointer;
+}
+.viewer-zoom:hover { background: rgba(255,255,255,.25); }
+.viewer-dl {
+  display: inline-flex; align-items: center;
+  background: var(--blue); color: #fff; text-decoration: none;
+  padding: 0 16px; height: 38px; border-radius: 9px;
+  font-size: 13.5px; font-weight: 700;
+}
+.viewer-dl:hover { background: var(--blue-dark); }
+
+/* Dosya sekmeleri (ihaledeki belgeler) */
+.viewer-files {
+  flex: 0 0 auto;
+  display: flex; gap: 8px; padding: 10px 14px;
+  background: var(--card); border-bottom: 1px solid var(--border);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.viewer-files:empty { display: none; }
+.vfile {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); background: var(--card);
+  border-radius: 10px; padding: 7px 12px; cursor: pointer;
+  font: inherit; font-size: 13px; color: var(--gray-fg);
+  white-space: nowrap; flex-shrink: 0;
+}
+.vfile.active { border-color: var(--blue); background: #f4f8ff; color: var(--blue); font-weight: 700; }
+.vfile-ic {
+  font-size: 10px; font-weight: 800; color: #fff;
+  padding: 2px 6px; border-radius: 5px; background: var(--muted);
+}
+.vfile-ic.pdf { background: #e04444; }
+.vfile-ic.xlsx, .vfile-ic.xls { background: #1e7f3f; }
+.vfile-ic.docx, .vfile-ic.doc { background: #2563eb; }
+.vfile-ic.zip { background: #8a5cf6; }
+
+/* Belge sahnesi */
+.viewer-stage {
+  flex: 1 1 auto; overflow: auto; -webkit-overflow-scrolling: touch;
+  padding: 18px; display: flex; justify-content: center;
+}
+.viewer-content { width: 100%; max-width: 1000px; }
+.viewer-content.type-pdf { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pdf-page { box-shadow: 0 2px 12px rgba(0,0,0,.18); border-radius: 2px; max-width: 100%; }
+
+.viewer-info {
+  margin: 40px auto; text-align: center; color: var(--muted);
+  font-size: 15px; line-height: 1.6;
+}
+.viewer-info.error { color: var(--red-fg); }
+.viewer-info a { color: var(--blue); font-weight: 700; }
+
+/* Excel görünümü */
+.sheet-tabs {
+  display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;
+  position: sticky; top: 0;
+}
+.sheet-tab {
+  border: 1px solid var(--border); background: var(--card);
+  border-radius: 7px 7px 0 0; padding: 6px 14px; cursor: pointer;
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--gray-fg);
+}
+.sheet-tab.active { background: #1e7f3f; color: #fff; border-color: #1e7f3f; }
+.sheet-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.sheet-wrap table { border-collapse: collapse; font-size: 13px; width: 100%; }
+.sheet-wrap td, .sheet-wrap th {
+  border: 1px solid #e0e3e8; padding: 5px 9px; white-space: nowrap;
+  text-align: left; vertical-align: top;
+}
+.sheet-wrap tr:first-child td { background: #f4f6f8; font-weight: 700; }
+
+/* Word görünümü */
+.viewer-content.type-docx { background: transparent; }
+.viewer-content .docx-wrapper { background: transparent !important; padding: 0 !important; }
+.viewer-content .docx-wrapper > section.docx {
+  box-shadow: 0 2px 12px rgba(0,0,0,.15); margin-bottom: 16px;
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border); background: var(--card);
