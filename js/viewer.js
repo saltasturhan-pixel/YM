@@ -96,8 +96,10 @@ async function loadFile(index) {
   filesNav.querySelectorAll(".vfile").forEach((x, i) => x.classList.toggle("active", i === index));
   el("viewerFileName").textContent = file.ad + (file.tip ? "." + file.tip : "");
   const dl = el("viewerDownload");
-  dl.href = file.url;
-  dl.setAttribute("download", "");
+  const canDl = !window.YM_SECURE || (window.YMCrypto && window.YMCrypto.canDownload);
+  dl.style.display = canDl ? "" : "none";
+  dl.href = canDl ? file.url : "#";
+  if (canDl) dl.setAttribute("download", "");
 
   stage.innerHTML = '<div class="viewer-info">Yükleniyor…</div>';
   const type = (file.tip || ext(file.url)).toLowerCase();

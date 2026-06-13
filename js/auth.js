@@ -5,28 +5,41 @@
 
   const ITER_FALLBACK = 200000;
   const subtle = window.crypto && window.crypto.subtle;
-  let key = null;
+  let key = null;          // ana anahtar (MK)
 
   const fromB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 
-  async function deriveKey(password, salt, iterations) {
+  // Paroladan anahtar sarmalama anahtarı (KEK) türet
+  async function deriveKEK(password, salt, iterations) {
     const baseKey = await subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
     return subtle.deriveKey(
       { name: "PBKDF2", salt, iterations, hash: "SHA-256" },
-      baseKey,
-      { name: "AES-GCM", length: 256 },
-      false,
-      ["decrypt"]
+      baseKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
     );
   }
 
-  async function decryptBuffer(buf) {
-    const bytes = new Uint8Array(buf);
-    const iv = bytes.slice(0, 12);
-    const ct = bytes.slice(12);
-    return await subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
+  async function gcmDecrypt(k, buf) {
+    const b = new Uint8Array(buf);
+    return await subtle.decrypt({ name: "AES-GCM", iv: b.slice(0, 12) }, k, b.slice(12));
   }
-  window.YMCrypto = { decrypt: decryptBuffer };
+
+  async function decryptBuffer(buf) {
+    return await gcmDecrypt(key, buf);
+  }
+  window.YMCrypto = { decrypt: decryptBuffer, canDownload: false };
+
+  // Parolayı tüm girişlere karşı dene; doğruysa ana anahtarı açar
+  async function tryUnlock(password, entries) {
+    for (const e of entries) {
+      try {
+        const kek = await deriveKEK(password, fromB64(e.salt), e.iter || ITER_FALLBACK);
+        const mkRaw = await gcmDecrypt(kek, fromB64(e.wrapped));
+        const mk = await subtle.importKey("raw", mkRaw, "AES-GCM", false, ["decrypt"]);
+        return { mk, canDownload: !!e.canDownload };
+      } catch (_) { /* sonraki parola */ }
+    }
+    return null;
+  }
 
   function buildGate() {
     const gate = document.createElement("div");
@@ -64,9 +77,7 @@
       err.hidden = false;
       return;
     }
-    const salt = fromB64(cfg.salt);
-    const verify = fromB64(cfg.verify);
-    const iterations = cfg.iterations || ITER_FALLBACK;
+    const entries = cfg.entries || [];
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -74,17 +85,14 @@
       const btn = form.querySelector("button");
       btn.disabled = true;
       btn.textContent = "Kontrol ediliyor…";
-      try {
-        const k = await deriveKey(input.value, salt, iterations);
-        // doğrulama jetonunu çöz
-        const iv = verify.slice(0, 12);
-        const ct = verify.slice(12);
-        const plain = await window.crypto.subtle.decrypt({ name: "AES-GCM", iv }, k, ct);
-        if (new TextDecoder().decode(plain) !== "YM-VERIFY") throw new Error("bad");
-        key = k;
+      const res = await tryUnlock(input.value, entries);
+      if (res) {
+        key = res.mk;
+        window.YMCrypto.canDownload = res.canDownload;
         gate.remove();
         document.body.classList.remove("locked");
-      } catch (_) {
+        document.dispatchEvent(new CustomEvent("ym-unlocked", { detail: { canDownload: res.canDownload } }));
+      } else {
         err.hidden = false;
         btn.disabled = false;
         btn.textContent = "Giriş";

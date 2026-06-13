@@ -1,6 +1,19 @@
 {
-  "v": 1,
-  "iterations": 200000,
-  "salt": "BtsoHK8A3KIseL2dLKX+gg==",
-  "verify": "GaSLVb5pkcMI9xhh/VQzAkBUASQo8mL3TzXIAvHkdpanrw11mg=="
+  "v": 2,
+  "entries": [
+    {
+      "label": "izleyici",
+      "salt": "mTvxuLNZqj/n68DcjvH2bg==",
+      "iter": 200000,
+      "wrapped": "GAWQ6Xe/HoOxZiUaf6yW/TFdDZi30+pqRWyLg804qg9rp5CStQ9qVJGhNh21DCQSJZASgbnqaro1nLN8",
+      "canDownload": false
+    },
+    {
+      "label": "indirici",
+      "salt": "nctRbhYnAVZpB0axqldHBg==",
+      "iter": 200000,
+      "wrapped": "8KKflBXEGicBMZ2OAAsMREz5o5UluKPozm5+JeuNBoC6p/SVwWRJzf0B2nix5SQfKk9UP9Qz9WzjURES",
+      "canDownload": true
+    }
+  ]
 }
