@@ -101,10 +101,10 @@ body {
 
 .ilan-body { min-width: 0; }
 .first-row {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
+  display: flex; align-items: center;
+  gap: 6px 12px; flex-wrap: wrap; margin-bottom: 6px;
 }
-.badge-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; flex: 1 1 auto; }
 .badge { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
 .badge-acik    { background: var(--green-bg); color: var(--green-fg); }
 .badge-kapali  { background: var(--gray-bg);  color: var(--muted); }
@@ -132,7 +132,6 @@ body {
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-.ilan-meta { display: flex; align-items: center; gap: 10px; }
 .ilan-tarih { font-weight: 800; font-size: 14px; white-space: nowrap; }
 
 .ym-btn {
@@ -369,8 +368,9 @@ body.locked { overflow: hidden; }
   .ilan-baslik { white-space: normal; }
   .main-nav { display: none; }
   /* Mobilde rozetler ile tarih+buton satırını alt alta diz, taşmayı önle */
-  .first-row { flex-direction: column; align-items: stretch; gap: 10px; }
-  .ilan-meta { width: 100%; justify-content: space-between; }
-  .ym-btn { flex-shrink: 0; }
-  .ilan-tarih { font-size: 13px; }
+  /* Mobil: rozetler + Y.Maliyet butonu üst satırda, tarih kendi satırında */
+  .first-row { align-items: center; gap: 8px; }
+  .badge-row { order: 1; flex: 1 1 auto; }
+  .ym-btn { order: 2; flex-shrink: 0; }
+  .ilan-tarih { order: 3; width: 100%; font-size: 13px; white-space: normal; }
 }

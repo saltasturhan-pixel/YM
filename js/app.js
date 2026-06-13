@@ -55,12 +55,10 @@
               <span class="badge badge-${escapeHtml(ilan.tur)}">${escapeHtml(ilan.turEtiket)}</span>
               ${ilan.kategori ? '<span class="badge badge-kategori">' + escapeHtml(ilan.kategori) + "</span>" : ""}
             </div>
-            <div class="ilan-meta">
-              <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
-              <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
-                ${ICONS.money} Y. Maliyet <span class="count">${ilan.dosyalar.length}</span>
-              </button>
-            </div>
+            <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
+              ${ICONS.money} Y. Maliyet <span class="count">${ilan.dosyalar.length}</span>
+            </button>
+            <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
           </div>
           <h2 class="ilan-title">
             <span class="ilan-no">${escapeHtml(ilan.no)}</span>
