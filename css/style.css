@@ -364,8 +364,13 @@ body.locked { overflow: hidden; }
 
 /* Responsive */
 @media (max-width: 760px) {
-  .ilan-card { grid-template-columns: 1fr; }
+  .ilan-card { grid-template-columns: 1fr; padding: 14px 16px; }
   .kurum-logo { display: none; }
   .ilan-baslik { white-space: normal; }
   .main-nav { display: none; }
+  /* Mobilde rozetler ile tarih+buton satırını alt alta diz, taşmayı önle */
+  .first-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .ilan-meta { width: 100%; justify-content: space-between; }
+  .ym-btn { flex-shrink: 0; }
+  .ilan-tarih { font-size: 13px; }
 }

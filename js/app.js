@@ -58,7 +58,7 @@
             <div class="ilan-meta">
               <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
               <button class="ym-btn" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
-                ${ICONS.money} Yaklaşık Maliyet <span class="count">${ilan.dosyalar.length}</span>
+                ${ICONS.money} Y. Maliyet <span class="count">${ilan.dosyalar.length}</span>
               </button>
             </div>
           </div>

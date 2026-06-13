@@ -165,7 +165,36 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 9,
     "kurumKisa": "İBA",
-    "dosyalar": []
+    "dosyalar": [
+      {
+        "ad": "00_Idareye_Sorulacak_Hususlar",
+        "tip": "pdf",
+        "boyut": "38 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-965289/00_Idareye_Sorulacak_Hususlar.pdf"
+      },
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "86 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-965289/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama",
+        "tip": "pdf",
+        "boyut": "97 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-965289/02_FDU_Dogrulama.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama_Tablo",
+        "tip": "xlsx",
+        "boyut": "29 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-965289/02_FDU_Dogrulama_Tablo.xlsx"
+      }
+    ]
   },
   {
     "no": "2026/996955",
