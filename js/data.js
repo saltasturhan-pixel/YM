@@ -193,6 +193,13 @@ const ILANLAR = [
         "boyut": "283 KB",
         "tarih": "13.06.2026",
         "url": "dosyalar/2026-965289/03_Yaklasik_Maliyet_Cetveli.pdf"
+      },
+      {
+        "ad": "04_Bilesim_Detaylari",
+        "tip": "pdf",
+        "boyut": "641 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-965289/04_Bilesim_Detaylari.pdf"
       }
     ]
   },

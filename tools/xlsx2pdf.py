@@ -1,124 +1,151 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Excel (.xlsx) -> PDF: tüm satır/sütun/içerik korunur, metin kıvrılır,
-başlık her sayfada tekrar eder, birleşik hücreler (SPAN) ve Türkçe karakterler
-doğru çıkar. LibreOffice gerektirmez.
+"""Excel (.xlsx) -> PDF: tüm sayfaları, satır/sütun/içerik, birleşik hücreler
+(SPAN) ve Türkçe karakterler korunarak birebir basar. Sütun genişlikleri içeriğe
+göre otomatik; sayısal sütunlar sağa yaslı; metin kıvrılır. LibreOffice gerekmez.
 
 Kullanım: python3 tools/xlsx2pdf.py girdi.xlsx cikti.pdf
-Varsayım: 1. satır genel başlık, 2. satır sütun başlıkları, 3.+ veri.
 """
 import sys
 from openpyxl import load_workbook
-from openpyxl.utils import get_column_letter
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.lib import colors
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.platypus import SimpleDocTemplate, LongTable, TableStyle, Paragraph
+from reportlab.platypus import SimpleDocTemplate, LongTable, TableStyle, Paragraph, PageBreak
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-FONT_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-pdfmetrics.registerFont(TTFont("DV", FONT))
-pdfmetrics.registerFont(TTFont("DVB", FONT_B))
-
-# Sütun ağırlıkları (No, Kalem Kodu, İş Kalemi, Birim, Miktar, B.Fiyat, Tutar, Kesinlik, Açıklama)
-WEIGHTS = [3, 8, 22, 5, 6, 9, 10, 6, 31]
-RIGHT_COLS = {4, 5, 6}   # sayısal sütunlar sağa yaslı
-CENTER_COLS = {0, 3, 7}
+pdfmetrics.registerFont(TTFont("DV", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
+pdfmetrics.registerFont(TTFont("DVB", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"))
 
 
-def tr_num(v, decimals):
-    if decimals is None:
-        decimals = 0 if float(v).is_integer() else 2
-    s = f"{v:,.{decimals}f}"
-    return s.replace(",", "\x00").replace(".", ",").replace("\x00", ".")
+def tr_num(v):
+    if isinstance(v, bool):
+        return str(v)
+    if isinstance(v, int) or (isinstance(v, float) and float(v).is_integer()):
+        return f"{int(v):,d}".replace(",", ".")
+    s = f"{v:,.4f}"
+    intp, frac = s.split(".")
+    frac = frac.rstrip("0")
+    intp = intp.replace(",", ".")
+    return intp + ("," + frac if frac else "")
 
 
-def cell_text(v, col, is_data):
+def esc(t):
+    return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def cell_str(v):
     if v is None:
         return ""
-    if is_data and isinstance(v, (int, float)) and col in RIGHT_COLS:
-        return tr_num(v, None if col == 4 else 2)
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return tr_num(v)
     return str(v)
 
 
-def main(src, out):
-    wb = load_workbook(src, data_only=True)
-    ws = wb.active
+def full_span_rows(ws, ncol):
+    """min_col=1 ve max_col=ncol olan birleşik satırların kümesi."""
+    s = {}
+    for mr in ws.merged_cells.ranges:
+        if mr.min_col == 1 and mr.max_col == ncol:
+            for r in range(mr.min_row, mr.max_row + 1):
+                s[r] = mr.min_row
+    return s
+
+
+def col_weights(ws, ncol, fullspans):
+    maxlen = [3] * ncol
+    numeric_hits = [0] * ncol
+    numeric_total = [0] * ncol
+    for r in range(1, ws.max_row + 1):
+        if r in fullspans:
+            continue
+        for c in range(1, ncol + 1):
+            v = ws.cell(r, c).value
+            if v is None:
+                continue
+            txt = cell_str(v)
+            # uzun açıklama sütununu biraz sınırla ama görünür tut
+            maxlen[c - 1] = max(maxlen[c - 1], min(len(txt), 70))
+            numeric_total[c - 1] += 1
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                numeric_hits[c - 1] += 1
+    weights = [max(3.0, ml) for ml in maxlen]
+    right = {i for i in range(ncol)
+             if numeric_total[i] >= 3 and numeric_hits[i] >= 0.6 * numeric_total[i]}
+    return weights, right
+
+
+def build_sheet_story(ws):
     ncol = ws.max_column
     nrow = ws.max_row
+    if ncol == 0 or nrow == 0:
+        return []
+    fullspans = full_span_rows(ws, ncol)
+    weights, right_cols = col_weights(ws, ncol, fullspans)
 
-    weights = WEIGHTS if ncol == len(WEIGHTS) else [1] * ncol
-    page = landscape(A4)
-    usable = page[0] - 16 * mm
+    page_w = landscape(A4)[0] - 16 * mm
     tot = sum(weights)
-    col_w = [usable * w / tot for w in weights]
+    col_w = [page_w * w / tot for w in weights]
 
     base = ParagraphStyle("b", fontName="DV", fontSize=6.4, leading=7.8)
-    styles = {}
-    for key, align, bold in [("L", 0, 0), ("R", 2, 0), ("C", 1, 0), ("H", 1, 1)]:
-        styles[key] = ParagraphStyle("s" + key, parent=base, alignment=align,
-                                     fontName="DVB" if bold else "DV",
-                                     fontSize=7 if bold else 6.4,
-                                     textColor=colors.white if bold else colors.black)
+    st_left = ParagraphStyle("l", parent=base, alignment=0)
+    st_right = ParagraphStyle("r", parent=base, alignment=2)
+    st_banner = ParagraphStyle("ban", parent=base, alignment=0, fontName="DVB", fontSize=6.8)
+    st_title = ParagraphStyle("t", parent=base, alignment=0, fontName="DVB",
+                              fontSize=9, leading=11, textColor=colors.HexColor("#1f4e79"))
 
-    def style_for(col, is_header):
-        if is_header:
-            return styles["H"]
-        if col in RIGHT_COLS:
-            return styles["R"]
-        if col in CENTER_COLS:
-            return styles["C"]
-        return styles["L"]
-
-    title_text = str(ws.cell(1, 1).value or "").strip()
-
-    # Tablo gövdesi: 2. satır (başlık) -> tablo satır 0; veri 3.+ -> 1..
     data = []
-    for r in range(2, nrow + 1):
-        is_header = (r == 2)
-        is_data = (r >= 3)
+    styles = []
+    spans = []
+    for r in range(1, nrow + 1):
+        is_full = r in fullspans
+        is_title = (r == 1)
         row = []
         for c in range(1, ncol + 1):
-            txt = cell_text(ws.cell(r, c).value, c - 1, is_data)
-            txt = txt.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            row.append(Paragraph(txt or "&nbsp;", style_for(c - 1, is_header)))
+            v = ws.cell(r, c).value
+            txt = esc(cell_str(v))
+            if is_title and c == 1:
+                stl = st_title
+            elif is_full and c == 1:
+                stl = st_banner
+            elif (c - 1) in right_cols and not is_full:
+                stl = st_right
+            else:
+                stl = st_left
+            row.append(Paragraph(txt or "&nbsp;", stl))
         data.append(row)
-
-    # Birleşik hücreler -> SPAN (2. satırdan itibaren olanlar; tablo satırı = excel - 2)
-    spans = []
-    for mr in ws.merged_cells.ranges:
-        if mr.min_row < 2:
-            continue
-        spans.append(("SPAN", (mr.min_col - 1, mr.min_row - 2),
-                      (mr.max_col - 1, mr.max_row - 2)))
+        if is_full:
+            spans.append(("SPAN", (0, r - 1), (ncol - 1, r - 1)))
+            styles.append(("BACKGROUND", (0, r - 1), (ncol - 1, r - 1),
+                           colors.HexColor("#eaf0f7" if r > 1 else "#ffffff")))
 
     ts = TableStyle([
-        ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#b8bdc7")),
-        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1f4e79")),
+        ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#c2c7d0")),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("TOPPADDING", (0, 0), (-1, -1), 1.5),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 1.5),
         ("LEFTPADDING", (0, 0), (-1, -1), 2.5),
         ("RIGHTPADDING", (0, 0), (-1, -1), 2.5),
-        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#eef2f7")]),
-    ] + spans)
+    ] + spans + styles)
 
-    tbl = LongTable(data, colWidths=col_w, repeatRows=1)
+    tbl = LongTable(data, colWidths=col_w)
     tbl.setStyle(ts)
+    return [tbl]
 
-    doc = SimpleDocTemplate(out, pagesize=page,
+
+def main(src, out):
+    wb = load_workbook(src, data_only=True)
+    story = []
+    for i, ws in enumerate(wb.worksheets):
+        if i > 0:
+            story.append(PageBreak())
+        story.extend(build_sheet_story(ws))
+    doc = SimpleDocTemplate(out, pagesize=landscape(A4),
                             leftMargin=8 * mm, rightMargin=8 * mm,
                             topMargin=8 * mm, bottomMargin=8 * mm,
-                            title="Yaklaşık Maliyet Cetveli")
-    head = ParagraphStyle("head", fontName="DVB", fontSize=9, leading=11,
-                          spaceAfter=4, textColor=colors.HexColor("#1f4e79"))
-    story = []
-    if title_text:
-        story.append(Paragraph(title_text.replace("&", "&amp;"), head))
-    story.append(tbl)
+                            title="Belge")
     doc.build(story)
     print("PDF üretildi:", out)
 
