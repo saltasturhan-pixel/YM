@@ -207,6 +207,39 @@ body {
 }
 .modal-note { font-size: 12px; color: var(--muted); }
 
+/* ===== Parola kapısı ===== */
+body.locked { overflow: hidden; }
+.lock-gate {
+  position: fixed; inset: 0; z-index: 500;
+  background: linear-gradient(160deg, #1d2330 0%, #2563eb 160%);
+  display: grid; place-items: center; padding: 20px;
+}
+.lock-box {
+  background: #fff; border-radius: 18px; padding: 36px 30px;
+  width: 100%; max-width: 380px; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+.lock-logo {
+  width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 18px;
+  background: var(--blue); color: #fff; display: grid; place-items: center;
+  font-weight: 800; font-size: 20px; letter-spacing: 1px;
+}
+.lock-box h1 { font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+.lock-box p { font-size: 13.5px; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
+#lockForm { display: flex; flex-direction: column; gap: 10px; }
+#lockInput {
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 13px 14px; font: inherit; font-size: 15px; outline: none;
+}
+#lockInput:focus { border-color: var(--blue); }
+#lockForm button {
+  background: var(--blue); color: #fff; border: 0; border-radius: 10px;
+  padding: 13px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+}
+#lockForm button:hover { background: var(--blue-dark); }
+#lockForm button:disabled { opacity: .6; cursor: default; }
+.lock-error { color: var(--red-fg); font-size: 13px; margin-top: 14px; }
+
 /* ===== Tam ekran belge görüntüleyici ===== */
 .viewer[hidden] { display: none; }
 .viewer {

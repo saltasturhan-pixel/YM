@@ -25,9 +25,12 @@ function applyZoom() {
 }
 
 async function fetchBuffer(url) {
-  const res = await fetch(url);
+  const secure = window.YM_SECURE && window.YMCrypto;
+  const realUrl = secure ? url + ".enc" : url;
+  const res = await fetch(realUrl);
   if (!res.ok) throw new Error("Dosya bulunamadı (" + res.status + ")");
-  return await res.arrayBuffer();
+  const buf = await res.arrayBuffer();
+  return secure ? await window.YMCrypto.decrypt(buf) : buf;
 }
 
 async function renderPdf(buf, container) {

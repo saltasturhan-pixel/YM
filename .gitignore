@@ -1,2 +1,10 @@
 node_modules/
 .DS_Store
+
+# Şifresiz (düz) yaklaşık maliyet belgeleri depoya GÖNDERİLMEZ; sadece .enc gider
+dosyalar/**/*.pdf
+dosyalar/**/*.xlsx
+dosyalar/**/*.xls
+dosyalar/**/*.docx
+dosyalar/**/*.doc
+dosyalar/**/*.zip
