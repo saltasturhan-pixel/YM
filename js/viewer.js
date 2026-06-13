@@ -27,7 +27,7 @@ function applyZoom() {
 async function fetchBuffer(url) {
   const secure = window.YM_SECURE && window.YMCrypto;
   const realUrl = secure ? url + ".enc" : url;
-  const res = await fetch(realUrl);
+  const res = await fetch(realUrl, { cache: "no-cache" });
   if (!res.ok) throw new Error("Dosya bulunamadı (" + res.status + ")");
   const buf = await res.arrayBuffer();
   return secure ? await window.YMCrypto.decrypt(buf) : buf;

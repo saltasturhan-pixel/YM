@@ -52,12 +52,43 @@ function walk(dir) {
   return out;
 }
 
-const main = async () => {
-  const salt = globalThis.crypto.getRandomValues(new Uint8Array(16));
-  const key = await deriveKey(sifre, salt);
+const fromB64 = (s) => new Uint8Array(Buffer.from(s, "base64"));
 
-  // Doğrulama jetonu: parolanin doğru olup olmadığını anlamak için
-  const verifyCt = await encryptBytes(key, new TextEncoder().encode("YM-VERIFY"));
+async function decryptBytes(key, buf) {
+  const bytes = new Uint8Array(buf);
+  const iv = bytes.slice(0, 12);
+  const ct = bytes.slice(12);
+  return await subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
+}
+
+const main = async () => {
+  // SABİT ANAHTAR: lock.json varsa onun salt'ını yeniden kullan; böylece her
+  // çalıştırmada anahtar değişmez ve eski şifreli dosyalar (önbellekte kalmış
+  // olsa bile) hep çözülebilir. Yeni salt sadece parola değiştirilince üretilir.
+  const yeniIste = process.env.YM_YENI_SALT === "1";
+  let salt, iterations = ITER, verifyB64, key;
+
+  if (fs.existsSync(LOCK) && !yeniIste) {
+    const lock = JSON.parse(fs.readFileSync(LOCK, "utf8"));
+    salt = fromB64(lock.salt);
+    iterations = lock.iterations || ITER;
+    key = await deriveKey(sifre, salt);
+    // Verilen parola mevcut kilidi açıyor mu? Açmıyorsa yanlış parolayla
+    // her şeyi bozmamak için dur.
+    try {
+      const plain = await decryptBytes(key, fromB64(lock.verify));
+      if (Buffer.from(plain).toString() !== "YM-VERIFY") throw new Error();
+    } catch (_) {
+      console.error("HATA: Verilen parola mevcut js/lock.json ile uyuşmuyor.");
+      console.error("Parolayı DEĞİŞTİRMEK istiyorsan:  YM_YENI_SALT=1 YM_SIFRE=\"yeni\" node tools/encrypt.mjs");
+      process.exit(1);
+    }
+    verifyB64 = lock.verify;
+  } else {
+    salt = globalThis.crypto.getRandomValues(new Uint8Array(16));
+    key = await deriveKey(sifre, salt);
+    verifyB64 = b64(await encryptBytes(key, new TextEncoder().encode("YM-VERIFY")));
+  }
 
   let sayac = 0;
   if (fs.existsSync(DOSYALAR)) {
@@ -70,9 +101,9 @@ const main = async () => {
 
   fs.writeFileSync(
     LOCK,
-    JSON.stringify({ v: 1, iterations: ITER, salt: b64(salt), verify: b64(verifyCt) }, null, 2)
+    JSON.stringify({ v: 1, iterations, salt: b64(salt), verify: verifyB64 }, null, 2)
   );
-  console.log(sayac + " dosya şifrelendi. js/lock.json güncellendi.");
+  console.log(sayac + " dosya şifrelendi (sabit anahtar). js/lock.json korundu.");
   console.log("Not: Düz dosyalar .gitignore ile depoya gitmez; sadece .enc yüklenir.");
 };
 main();
