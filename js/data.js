@@ -262,7 +262,36 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 11,
     "kurumKisa": "DİG",
-    "dosyalar": []
+    "dosyalar": [
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "41 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-996955/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama",
+        "tip": "pdf",
+        "boyut": "39 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-996955/02_FDU_Dogrulama.pdf"
+      },
+      {
+        "ad": "03_Yaklasik_Maliyet_Cetveli",
+        "tip": "pdf",
+        "boyut": "246 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-996955/03_Yaklasik_Maliyet_Cetveli.pdf"
+      },
+      {
+        "ad": "04_Bilesim_Detaylari",
+        "tip": "pdf",
+        "boyut": "201 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-996955/04_Bilesim_Detaylari.pdf"
+      }
+    ]
   },
   {
     "no": "2026/621765",
