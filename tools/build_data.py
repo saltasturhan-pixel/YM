@@ -88,6 +88,9 @@ def dosya_listesi(ikn):
     for f in sorted(klasor.iterdir()):
         if not f.is_file():
             continue
+        # Şifreli kopyaları (.enc) ve yer tutucu .txt'leri listeleme; yalnızca asıl belgeler
+        if f.suffix.lower() in (".enc", ".txt"):
+            continue
         st = f.stat()
         sonuc.append({
             "ad": f.stem,

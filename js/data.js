@@ -152,6 +152,22 @@ const ILANLAR = [
     "dosyalar": []
   },
   {
+    "no": "2026/965289",
+    "baslik": "Sivas (Merkez) Kanalizasyon, Yağmursuyu ve İçmesuyu İnşaatı Yapım İşi",
+    "kurum": "İLLER BANKASI ANONİM ŞİRKETİ GENEL MÜDÜRLÜĞÜ YATIRIM KOORDİNASYON DAİRESİ BAŞKANLIĞI",
+    "logoUrl": "https://ekapv2.kik.gov.tr/b_idare/assets/detsislogos/486b23363466c8781eefaef948ae1aa02d0ba7df55b8de2174ccb936791143a9.png",
+    "sehir": "ANKARA",
+    "tarih": "14.07.2026 10:30",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 9,
+    "kurumKisa": "İBA",
+    "dosyalar": []
+  },
+  {
     "no": "2026/996955",
     "baslik": "Şanlıurfa Suruç Ovası 2 Kısım Tarla İçi Kapalı Drenaj ve TİGH Projesi",
     "kurum": "DEVLET SU İŞLERİ GENEL MÜDÜRLÜĞÜ ARAZİ TOPLULAŞTIRMA VE TARLA İÇİ GELİŞTİRME HİZMETLERİ DAİRESİ BAŞKANLIĞI",
@@ -163,7 +179,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 9,
+    "id": 10,
     "kurumKisa": "DİG",
     "dosyalar": []
   },
@@ -179,7 +195,7 @@ const ILANLAR = [
     "tur": "danismanlik",
     "turEtiket": "Danışmanlık",
     "kategori": "Belli İstekliler Arasında",
-    "id": 10,
+    "id": 11,
     "kurumKisa": "KGM",
     "dosyalar": []
   }
