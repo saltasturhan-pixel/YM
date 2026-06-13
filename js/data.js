@@ -2,6 +2,51 @@
 // İlan eklemek için inspects/ klasörüne EKAP kart inspect'ini koyup script'i çalıştırın.
 const ILANLAR = [
   {
+    "no": "2026/952800",
+    "baslik": "Valilik Bölgesi Köprülü Kavşak Yapımı (Çankırı)",
+    "kurum": "ÇANKIRI BELEDİYESİ FEN İŞLERİ MÜDÜRLÜĞÜ",
+    "logoUrl": "",
+    "sehir": "ÇANKIRI",
+    "tarih": "18.06.2026 10:00",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 1,
+    "kurumKisa": "ÇBF",
+    "dosyalar": [
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "49 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-952800/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama",
+        "tip": "pdf",
+        "boyut": "40 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-952800/02_FDU_Dogrulama.pdf"
+      },
+      {
+        "ad": "03_Yaklasik_Maliyet_Cetveli",
+        "tip": "pdf",
+        "boyut": "65 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-952800/03_Yaklasik_Maliyet_Cetveli.pdf"
+      },
+      {
+        "ad": "04_Bilesim_Detaylari",
+        "tip": "pdf",
+        "boyut": "85 KB",
+        "tarih": "13.06.2026",
+        "url": "dosyalar/2026-952800/04_Bilesim_Detaylari.pdf"
+      }
+    ]
+  },
+  {
     "no": "2026/970908",
     "baslik": "MERSİN İLİ MEZİTLİ İLÇESİ MUHİTTİN DEVELİ 24 DERSLİKLİ ORTAOKULU YAPIM İŞİ",
     "kurum": "MERSİN İL MİLLİ EĞİTİM MÜDÜRLÜĞÜ",
@@ -13,7 +58,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 1,
+    "id": 2,
     "kurumKisa": "MME",
     "dosyalar": []
   },
@@ -29,7 +74,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 2,
+    "id": 3,
     "kurumKisa": "KBB",
     "dosyalar": []
   },
@@ -45,7 +90,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 3,
+    "id": 4,
     "kurumKisa": "İBD",
     "dosyalar": []
   },
@@ -61,7 +106,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 4,
+    "id": 5,
     "kurumKisa": "KYİ",
     "dosyalar": []
   },
@@ -77,7 +122,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 5,
+    "id": 6,
     "kurumKisa": "DİG",
     "dosyalar": []
   },
@@ -93,7 +138,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 6,
+    "id": 7,
     "kurumKisa": "KGM",
     "dosyalar": [
       {
@@ -131,7 +176,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 7,
+    "id": 8,
     "kurumKisa": "HÖİ",
     "dosyalar": []
   },
@@ -147,7 +192,7 @@ const ILANLAR = [
     "tur": "mal",
     "turEtiket": "Mal",
     "kategori": "Açık",
-    "id": 8,
+    "id": 9,
     "kurumKisa": "MBB",
     "dosyalar": []
   },
@@ -163,7 +208,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 9,
+    "id": 10,
     "kurumKisa": "İBA",
     "dosyalar": [
       {
@@ -215,7 +260,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 10,
+    "id": 11,
     "kurumKisa": "DİG",
     "dosyalar": []
   },
@@ -231,7 +276,7 @@ const ILANLAR = [
     "tur": "danismanlik",
     "turEtiket": "Danışmanlık",
     "kategori": "Belli İstekliler Arasında",
-    "id": 11,
+    "id": 12,
     "kurumKisa": "KGM",
     "dosyalar": []
   }

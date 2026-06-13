@@ -104,7 +104,7 @@ body {
   display: flex; align-items: center;
   gap: 6px 12px; flex-wrap: wrap; margin-bottom: 6px;
 }
-.badge-row { display: flex; gap: 6px; flex-wrap: wrap; flex: 1 1 auto; }
+.badge-row { display: flex; gap: 6px; flex-wrap: wrap; flex: 1 1 auto; order: 1; }
 .badge { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 12px; }
 .badge-acik    { background: var(--green-bg); color: var(--green-fg); }
 .badge-kapali  { background: var(--gray-bg);  color: var(--muted); }
@@ -132,9 +132,11 @@ body {
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-.ilan-tarih { font-weight: 800; font-size: 14px; white-space: nowrap; }
+/* Geniş ekran: rozetler sol, tarih/şehir ortada, Y. Maliyet butonu en sağda (hizalı) */
+.ilan-tarih { font-weight: 800; font-size: 14px; white-space: nowrap; order: 2; }
 
 .ym-btn {
+  order: 3;
   display: inline-flex; align-items: center; gap: 7px;
   background: var(--blue); color: #fff; border: 0;
   border-radius: 8px; padding: 7px 14px;
