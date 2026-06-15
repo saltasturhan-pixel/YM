@@ -1,5 +1,4 @@
-// Bu dosya tools/build_data.py tarafından üretilir, elle düzenlemeyin.
-// İlan eklemek için inspects/ klasörüne EKAP kart inspect'ini koyup script'i çalıştırın.
+// Bu dosya tools/build.mjs (veya admin paneli) tarafından üretilir, elle düzenlemeyin.
 const ILANLAR = [
   {
     "no": "2026/952800",
@@ -15,6 +14,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 1,
     "kurumKisa": "ÇBF",
+    "pasif": false,
     "dosyalar": [
       {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
@@ -60,6 +60,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 2,
     "kurumKisa": "MME",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -76,6 +77,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 3,
     "kurumKisa": "KBB",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -92,6 +94,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 4,
     "kurumKisa": "İBD",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -108,6 +111,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 5,
     "kurumKisa": "KYİ",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -124,6 +128,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 6,
     "kurumKisa": "DİG",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -140,6 +145,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 7,
     "kurumKisa": "KGM",
+    "pasif": false,
     "dosyalar": [
       {
         "ad": "Yaklasik-Maliyet-Aciklama-Raporu",
@@ -178,6 +184,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 8,
     "kurumKisa": "HÖİ",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -194,6 +201,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 9,
     "kurumKisa": "MBB",
+    "pasif": false,
     "dosyalar": []
   },
   {
@@ -210,6 +218,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 10,
     "kurumKisa": "İBA",
+    "pasif": false,
     "dosyalar": [
       {
         "ad": "00_Idareye_Sorulacak_Hususlar",
@@ -262,6 +271,7 @@ const ILANLAR = [
     "kategori": "Açık",
     "id": 11,
     "kurumKisa": "DİG",
+    "pasif": false,
     "dosyalar": [
       {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
@@ -307,6 +317,7 @@ const ILANLAR = [
     "kategori": "Belli İstekliler Arasında",
     "id": 12,
     "kurumKisa": "KGM",
+    "pasif": false,
     "dosyalar": []
   }
 ];

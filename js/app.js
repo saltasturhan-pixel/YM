@@ -22,6 +22,7 @@
   }
 
   function matches(ilan) {
+    if (ilan.pasif) return false;
     if (activeFilter === "acik" && ilan.durum !== "acik") return false;
     if (["yapim", "hizmet", "mal", "danismanlik"].includes(activeFilter) && ilan.tur !== activeFilter) return false;
     if (query) {
