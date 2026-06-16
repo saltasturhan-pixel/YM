@@ -307,10 +307,12 @@ body.locked { overflow: hidden; }
 /* Belge sahnesi */
 .viewer-stage {
   flex: 1 1 auto; overflow: auto; -webkit-overflow-scrolling: touch;
-  padding: 18px; display: flex; justify-content: center;
+  padding: 18px;
 }
-.viewer-content { width: 100%; max-width: 1000px; }
+.viewer-content { width: 100%; max-width: 1000px; margin: 0 auto; }
 .viewer-content.type-pdf { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+/* Excel: tablo doğal genişlikte; tüm sahne her yöne kayar (PDF gibi tam ekran) */
+.viewer-content.type-xlsx { max-width: none; width: max-content; margin: 0; }
 .pdf-page { box-shadow: 0 2px 12px rgba(0,0,0,.18); border-radius: 2px; max-width: 100%; }
 
 .viewer-info {
@@ -331,10 +333,11 @@ body.locked { overflow: hidden; }
   font: inherit; font-size: 13px; font-weight: 600; color: var(--gray-fg);
 }
 .sheet-tab.active { background: #1e7f3f; color: #fff; border-color: #1e7f3f; }
-.sheet-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
-.sheet-wrap table { border-collapse: collapse; font-size: 13px; width: 100%; }
+.sheet-wrap { background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.sheet-wrap table { border-collapse: collapse; font-size: 13px; width: auto; }
 .sheet-wrap td, .sheet-wrap th {
-  border: 1px solid #e0e3e8; padding: 5px 9px; white-space: nowrap;
+  border: 1px solid #e0e3e8; padding: 5px 9px;
+  white-space: normal; word-break: break-word; max-width: 420px;
   text-align: left; vertical-align: top;
 }
 .sheet-wrap tr:first-child td { background: #f4f6f8; font-weight: 700; }
