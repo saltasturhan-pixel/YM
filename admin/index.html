@@ -180,8 +180,10 @@ async function dosyaSil(ikn, ad, tip){
 async function yayinla(){
   if(!confirm('Değişiklikler canlı siteye gönderilsin mi?')) return;
   $('cikti').style.display='block'; $('cikti').textContent='Yayınlanıyor...';
+  $('cikti').scrollIntoView({behavior:'smooth'});
   const r = await api('/api/yayinla');
-  $('cikti').textContent = (r.ok?'✓ Gönderildi\n\n':'Hata\n\n') + (r.log||'');
+  $('cikti').textContent = (r.ok?'✓ Gönderildi — site 1-2 dakikada güncellenir.\n\n':'⚠ Gönderilemedi:\n\n') + (r.log||'');
+  alert(r.ok ? 'Yayınlandı ✓  Site 1-2 dakikada güncellenir.' : 'Gönderilemedi. Ayrıntı sayfanın en altındaki kutuda.');
 }
 
 $('parola').addEventListener('keydown', e=>{ if(e.key==='Enter') giris(); });

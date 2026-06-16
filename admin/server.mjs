@@ -151,11 +151,10 @@ const ROUTES = {
     if (!MK) return json(res, 401, { ok: false, hata: "Önce giriş yapın" });
     let log = "";
     let r = await gitCalistir(["add", "-A"]); log += r.out;
-    r = await gitCalistir(["commit", "-m", "Admin panelinden güncelleme"]); log += r.out;
-    r = await gitCalistir(["push"]); log += r.out;
-    const cur = (await gitCalistir(["rev-parse", "--abbrev-ref", "HEAD"])).out.trim();
-    r = await gitCalistir(["push", "origin", cur + ":main"]); log += r.out;
-    json(res, 200, { ok: true, log });
+    r = await gitCalistir(["commit", "-m", "Admin panelinden güncelleme"]); log += r.out + "\n";
+    // Hangi dalda olursak olalım, canlı siteyi (main) güncelle
+    r = await gitCalistir(["push", "origin", "HEAD:main"]); log += r.out;
+    json(res, 200, { ok: r.ok, log: log.trim() || "Gönderilecek değişiklik yok." });
   },
 };
 
