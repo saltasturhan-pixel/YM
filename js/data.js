@@ -221,39 +221,39 @@ const ILANLAR = [
     "pasif": false,
     "dosyalar": [
       {
-        "ad": "00_Idareye_Sorulacak_Hususlar",
-        "tip": "pdf",
-        "boyut": "38 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/00_Idareye_Sorulacak_Hususlar.pdf"
-      },
-      {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
-        "tip": "pdf",
-        "boyut": "86 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/01_Yaklasik_Maliyet_Ozeti.pdf"
+        "tip": "docx",
+        "boyut": "52 KB",
+        "tarih": "16.06.2026",
+        "url": "dosyalar/2026-965289/01_Yaklasik_Maliyet_Ozeti.docx"
       },
       {
         "ad": "02_FDU_Dogrulama",
-        "tip": "pdf",
-        "boyut": "97 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/02_FDU_Dogrulama.pdf"
+        "tip": "docx",
+        "boyut": "54 KB",
+        "tarih": "16.06.2026",
+        "url": "dosyalar/2026-965289/02_FDU_Dogrulama.docx"
       },
       {
-        "ad": "03_Yaklasik_Maliyet_Cetveli",
-        "tip": "pdf",
-        "boyut": "283 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/03_Yaklasik_Maliyet_Cetveli.pdf"
+        "ad": "03_Bilesim_Detaylari",
+        "tip": "xlsx",
+        "boyut": "175 KB",
+        "tarih": "16.06.2026",
+        "url": "dosyalar/2026-965289/03_Bilesim_Detaylari.xlsx"
       },
       {
-        "ad": "04_Bilesim_Detaylari",
-        "tip": "pdf",
-        "boyut": "641 KB",
-        "tarih": "13.06.2026",
-        "url": "dosyalar/2026-965289/04_Bilesim_Detaylari.pdf"
+        "ad": "04_Yaklasik_Maliyet_Cetveli",
+        "tip": "xlsx",
+        "boyut": "38 KB",
+        "tarih": "16.06.2026",
+        "url": "dosyalar/2026-965289/04_Yaklasik_Maliyet_Cetveli.xlsx"
+      },
+      {
+        "ad": "05_Analiz_Formati",
+        "tip": "xlsx",
+        "boyut": "623 KB",
+        "tarih": "16.06.2026",
+        "url": "dosyalar/2026-965289/05_Analiz_Formati.xlsx"
       }
     ]
   },
