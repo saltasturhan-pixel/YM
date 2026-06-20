@@ -304,6 +304,23 @@ const ILANLAR = [
     ]
   },
   {
+    "no": "2026/947942",
+    "baslik": "Ankara İli Çubuk ve Pursaklar İlçeleri Atıksu ve Yağmursuyu Hatları Yapım İşi",
+    "kurum": "ANKARA SU VE KANALİZASYON İDARESİ GENEL MÜDÜRLÜĞÜ KANAL İNŞAAT DAİRESİ BAŞKANLIĞI",
+    "logoUrl": "https://ekapv2.kik.gov.tr/b_idare/assets/detsislogos/c7d9f66f1649cb2ec4879d653482095cc9f54a64f228285d855edd73f5624089.png",
+    "sehir": "ANKARA",
+    "tarih": "21.07.2026 10:00",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 12,
+    "kurumKisa": "AKİ",
+    "pasif": false,
+    "dosyalar": []
+  },
+  {
     "no": "2026/621765",
     "baslik": "Polatlı - Haymana Devlet Yolu Etüt ve Proje Danışmanlık Hizmeti Alımı İşi",
     "kurum": "KARAYOLLARI GENEL MÜDÜRLÜĞÜ PROGRAM VE İZLEME DAİRESİ BAŞKANLIĞI",
@@ -315,7 +332,7 @@ const ILANLAR = [
     "tur": "danismanlik",
     "turEtiket": "Danışmanlık",
     "kategori": "Belli İstekliler Arasında",
-    "id": 12,
+    "id": 13,
     "kurumKisa": "KGM",
     "pasif": false,
     "dosyalar": []
