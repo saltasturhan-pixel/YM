@@ -94,7 +94,6 @@ async function loadFile(index) {
   zoom = 1;
   const file = files[index];
   filesNav.querySelectorAll(".vfile").forEach((x, i) => x.classList.toggle("active", i === index));
-  el("viewerFileName").textContent = file.ad + (file.tip ? "." + file.tip : "");
   const dl = el("viewerDownload");
   const canDl = !window.YM_SECURE || (window.YMCrypto && window.YMCrypto.canDownload);
   dl.style.display = canDl ? "" : "none";

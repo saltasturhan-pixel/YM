@@ -150,6 +150,12 @@ body {
   background: rgba(255,255,255,.22); border-radius: 999px;
   font-size: 11.5px; padding: 1px 8px;
 }
+/* Dosyası olan ihale -> yeşil düğme, olmayan -> sarı düğme */
+.ym-btn.dolu { background: #1e7f3f; }
+.ym-btn.dolu:hover { background: #196c35; }
+.ym-btn.bos { background: #e6a817; color: #3a2c00; }
+.ym-btn.bos:hover { background: #d59c12; }
+.ym-btn.bos .count { background: rgba(0,0,0,.16); }
 
 .empty-state { text-align: center; color: var(--muted); padding: 60px 0; }
 
@@ -250,9 +256,10 @@ body.locked { overflow: hidden; }
 }
 .viewer-bar {
   flex: 0 0 auto;
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 14px; background: var(--text); color: #fff;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; background: var(--text); color: #fff;
 }
+.viewer-ikn { font-size: 12px; opacity: .65; white-space: nowrap; flex-shrink: 0; font-weight: 700; }
 .viewer-close {
   border: 0; background: rgba(255,255,255,.14); color: #fff;
   width: 38px; height: 38px; border-radius: 9px;
@@ -281,20 +288,21 @@ body.locked { overflow: hidden; }
 
 /* Dosya sekmeleri (ihaledeki belgeler) */
 .viewer-files {
-  flex: 0 0 auto;
-  display: flex; gap: 8px; padding: 10px 14px;
-  background: var(--card); border-bottom: 1px solid var(--border);
+  flex: 1 1 auto; min-width: 0;
+  display: flex; gap: 6px;
+  background: transparent; border: 0; padding: 0;
   overflow-x: auto; -webkit-overflow-scrolling: touch;
 }
 .viewer-files:empty { display: none; }
 .vfile {
-  display: inline-flex; align-items: center; gap: 8px;
-  border: 1px solid var(--border); background: var(--card);
-  border-radius: 10px; padding: 7px 12px; cursor: pointer;
-  font: inherit; font-size: 13px; color: var(--gray-fg);
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid transparent; background: rgba(255,255,255,.12);
+  border-radius: 8px; padding: 6px 11px; cursor: pointer;
+  font: inherit; font-size: 12.5px; color: #e9ebf0;
   white-space: nowrap; flex-shrink: 0;
 }
-.vfile.active { border-color: var(--blue); background: #f4f8ff; color: var(--blue); font-weight: 700; }
+.vfile:hover { background: rgba(255,255,255,.2); }
+.vfile.active { background: #fff; color: var(--blue); font-weight: 700; }
 .vfile-ic {
   font-size: 10px; font-weight: 800; color: #fff;
   padding: 2px 6px; border-radius: 5px; background: var(--muted);
@@ -372,6 +380,8 @@ body.locked { overflow: hidden; }
   .kurum-logo { display: none; }
   .ilan-baslik { white-space: normal; }
   .main-nav { display: none; }
+  /* Görüntüleyici üst çubuğunda mobilde İKN gizli; sekmelere daha çok yer */
+  .viewer-ikn { display: none; }
   /* Mobilde rozetler ile tarih+buton satırını alt alta diz, taşmayı önle */
   /* Mobil: rozetler + Y.Maliyet butonu üst satırda, tarih kendi satırında */
   .first-row { align-items: center; gap: 8px; }
