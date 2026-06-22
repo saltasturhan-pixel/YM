@@ -15,6 +15,8 @@ const ILANLAR = [
     "id": 1,
     "kurumKisa": "ÇBF",
     "pasif": false,
+    "tutar": 245757672,
+    "paraBirimi": "TL",
     "dosyalar": [
       {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
@@ -61,6 +63,8 @@ const ILANLAR = [
     "id": 2,
     "kurumKisa": "MME",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -78,6 +82,8 @@ const ILANLAR = [
     "id": 3,
     "kurumKisa": "KBB",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -95,6 +101,8 @@ const ILANLAR = [
     "id": 4,
     "kurumKisa": "İBD",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -112,6 +120,8 @@ const ILANLAR = [
     "id": 5,
     "kurumKisa": "KYİ",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -129,6 +139,8 @@ const ILANLAR = [
     "id": 6,
     "kurumKisa": "DİG",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -146,6 +158,8 @@ const ILANLAR = [
     "id": 7,
     "kurumKisa": "KGM",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": [
       {
         "ad": "Yaklasik-Maliyet-Aciklama-Raporu",
@@ -185,6 +199,8 @@ const ILANLAR = [
     "id": 8,
     "kurumKisa": "HÖİ",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -202,6 +218,8 @@ const ILANLAR = [
     "id": 9,
     "kurumKisa": "MBB",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -219,6 +237,8 @@ const ILANLAR = [
     "id": 10,
     "kurumKisa": "İBA",
     "pasif": false,
+    "tutar": 1272175240,
+    "paraBirimi": "TL",
     "dosyalar": [
       {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
@@ -272,6 +292,8 @@ const ILANLAR = [
     "id": 11,
     "kurumKisa": "DİG",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": [
       {
         "ad": "01_Yaklasik_Maliyet_Ozeti",
@@ -318,6 +340,8 @@ const ILANLAR = [
     "id": 12,
     "kurumKisa": "AKİ",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   },
   {
@@ -335,6 +359,8 @@ const ILANLAR = [
     "id": 13,
     "kurumKisa": "KGM",
     "pasif": false,
+    "tutar": null,
+    "paraBirimi": "TL",
     "dosyalar": []
   }
 ];

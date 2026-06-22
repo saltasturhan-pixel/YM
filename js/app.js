@@ -21,6 +21,10 @@
     return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
+  function formatTutar(n) {
+    return Math.round(Number(n)).toLocaleString("tr-TR");
+  }
+
   function matches(ilan) {
     if (ilan.pasif) return false;
     if (activeFilter === "acik" && ilan.durum !== "acik") return false;
@@ -56,8 +60,9 @@
               <span class="badge badge-${escapeHtml(ilan.tur)}">${escapeHtml(ilan.turEtiket)}</span>
               ${ilan.kategori ? '<span class="badge badge-kategori">' + escapeHtml(ilan.kategori) + "</span>" : ""}
             </div>
-            <button class="ym-btn ${ilan.dosyalar.length ? "dolu" : "bos"}" data-ym="${ilan.id}" title="Yaklaşık maliyet dosyalarını görüntüle">
-              ${ICONS.money} Y. Maliyet <span class="count">${ilan.dosyalar.length}</span>
+            ${ilan.tutar != null ? `<span class="ilan-tutar">${formatTutar(ilan.tutar)} <small>${escapeHtml(ilan.paraBirimi || "TL")}</small></span>` : ""}
+            <button class="ym-btn ${ilan.dosyalar.length ? "dolu" : "bos"}" data-ym="${ilan.id}" title="Belgeleri görüntüle">
+              ${ICONS.money} Dökümanlar <span class="count">${ilan.dosyalar.length}</span>
             </button>
             <span class="ilan-tarih">${escapeHtml(ilan.sehir)}, ${escapeHtml(ilan.tarih)}</span>
           </div>

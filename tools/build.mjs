@@ -96,6 +96,8 @@ export function buildData() {
     ilan.id = i + 1;
     ilan.kurumKisa = kurumKisa(ilan.kurum);
     ilan.pasif = !!ic.pasif;
+    ilan.tutar = (typeof ic.tutar === "number") ? ic.tutar : null;
+    ilan.paraBirimi = ic.paraBirimi || "TL";
     const klasor = ilan.no.replace("/", "-");
     ilan.dosyalar = (ic.dosyalar || []).map((d) => ({
       ad: d.ad, tip: d.tip, boyut: d.boyut, tarih: d.tarih,
