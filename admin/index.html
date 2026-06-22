@@ -38,6 +38,9 @@
   .tip.pdf{background:#e04444}.tip.xlsx,.tip.xls{background:#1e7f3f}.tip.docx,.tip.doc{background:#2563eb}.tip.zip{background:#8a5cf6}
   .dosya .ad{flex:1}
   .ekle-satir{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .tutar-satir{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0;padding:8px;background:#f3faf5;border:1px solid #d6ecdd;border-radius:8px;font-size:13px}
+  .tutar-satir input{border:1px solid var(--border);border-radius:7px;padding:6px 9px;font:inherit;font-size:13px;width:200px}
+  .tutar-satir select{border:1px solid var(--border);border-radius:7px;padding:6px;font:inherit}
   .bos{color:var(--muted);font-size:12.5px;padding:4px 0}
   #cikti{white-space:pre-wrap;background:#0f1320;color:#cdd3e0;border-radius:9px;padding:12px;font-size:12px;max-height:200px;overflow:auto;display:none;margin-top:10px}
   .gizle{display:none}
@@ -124,6 +127,15 @@ function ciz(){
       </div>
       <div class="ad"><span class="no">${esc(il.no)}</span> &nbsp; ${esc(il.baslik)}</div>
       <div class="kurum">${esc(il.kurum)} · ${esc(il.sehir)}, ${esc(il.tarih)}</div>
+      <div class="tutar-satir">
+        <span>Yaklaşık maliyet:</span>
+        <input type="text" id="t_${esc(il.no).replace('/','_')}" value="${il.tutar??''}" placeholder="örn. 245757672 (ondalıksız)">
+        <select id="pb_${esc(il.no).replace('/','_')}">
+          ${['TL','USD','EUR'].map(p=>`<option ${(il.paraBirimi||'TL')===p?'selected':''}>${p}</option>`).join('')}
+        </select>
+        <button class="btn kucuk" onclick="tutarKaydet('${il.no}')">Kaydet</button>
+        <span class="bos">(boş bırakırsan kartta görünmez)</span>
+      </div>
       <div class="dosyalar">
         ${(il.dosyalar||[]).map(d=>`
           <div class="dosya">
@@ -138,6 +150,15 @@ function ciz(){
         </div>
       </div>
     </div>`).join('');
+}
+
+async function tutarKaydet(ikn){
+  const key = ikn.replace('/','_');
+  const tutar = $('t_'+key).value;
+  const paraBirimi = $('pb_'+key).value;
+  const r = await api('/api/ihale-tutar', {ikn, tutar, paraBirimi});
+  if(!r.ok){ alert(r.hata||'Hata'); return; }
+  IHALELER = r.ihaleler; ciz();
 }
 
 async function ihaleEkle(){
@@ -169,6 +190,7 @@ async function dosyaEkle(ikn){
   const r = await api('/api/dosya-ekle', {ikn, dosyaAdi:f.name, veri});
   if(!r.ok){ alert(r.hata||'Hata'); return; }
   IHALELER = r.ihaleler; ciz();
+  if(r.otomatikTutar){ alert('Belgeden tutar otomatik bulundu: '+Number(r.otomatikTutar).toLocaleString('tr-TR')+'\nYanlışsa tutar kutusundan düzeltebilirsin.'); }
 }
 
 async function dosyaSil(ikn, ad, tip){

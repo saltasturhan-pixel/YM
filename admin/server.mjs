@@ -10,6 +10,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { execFile } from "child_process";
 import { buildData, icerikOku, icerikYaz, parseInspect } from "../tools/build.mjs";
+import { tutarBul } from "./lib/tutar.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const INSPECTS = path.join(ROOT, "inspects");
@@ -134,6 +135,23 @@ const ROUTES = {
     if (!ic[ikn]) ic[ikn] = { pasif: false, dosyalar: [] };
     ic[ikn].dosyalar = (ic[ikn].dosyalar || []).filter((d) => !(d.ad === ad && d.tip === tip));
     ic[ikn].dosyalar.push({ ad, tip, boyut: boyutStr(raw.length), tarih: bugun() });
+    // Tutar boşsa belgeden otomatik bulmaya çalış (Excel/Word)
+    let otomatik = null;
+    if (ic[ikn].tutar == null) {
+      otomatik = await tutarBul(dosyaAdi, raw);
+      if (otomatik) { ic[ikn].tutar = otomatik; if (!ic[ikn].paraBirimi) ic[ikn].paraBirimi = "TL"; }
+    }
+    icerikYaz(ic);
+    json(res, 200, { ok: true, ihaleler: buildData(), otomatikTutar: otomatik });
+  },
+  async "POST /api/ihale-tutar"(req, res) {
+    if (!MK) return json(res, 401, { ok: false, hata: "Önce giriş yapın" });
+    const { ikn, tutar, paraBirimi } = await body(req);
+    const ic = icerikOku();
+    if (!ic[ikn]) ic[ikn] = { pasif: false, dosyalar: [] };
+    const temiz = String(tutar == null ? "" : tutar).replace(/[^\d]/g, "");
+    ic[ikn].tutar = temiz === "" ? null : Number(temiz);
+    ic[ikn].paraBirimi = paraBirimi || "TL";
     icerikYaz(ic);
     json(res, 200, { ok: true, ihaleler: buildData() });
   },
