@@ -232,6 +232,7 @@ body {
 
 /* ===== Parola kapısı ===== */
 body.locked { overflow: hidden; }
+body.locked > *:not(.lock-gate):not(#ymLogout) { display: none !important; }
 .lock-gate {
   position: fixed; inset: 0; z-index: 500;
   background: linear-gradient(160deg, #1d2330 0%, #2563eb 160%);
