@@ -1,11 +1,11 @@
-// Parola kapısı ve AES-GCM çözücü + oturum hatırlama (sessionStorage).
-// Giriş yapılınca yenilemede içerde kalır; "Çıkış" ile veya sekme kapanınca temizlenir.
+// Parola kapısı ve AES-GCM çözücü + oturum hatırlama (localStorage).
+// Giriş yapılınca (yenileme/sekme/tarayıcı kapansa bile) içerde kalır; yalnız "Çıkış" ile temizlenir.
 (function () {
   if (!window.YM_SECURE) return;
 
   const ITER_FALLBACK = 200000;
   const subtle = window.crypto && window.crypto.subtle;
-  const STORE = window.sessionStorage;   // Tarayıcı kapansa da kalsın istersen: window.localStorage
+  const STORE = window.localStorage;   // sekme/tarayıcı kapansa da kalır; yalnız "Çıkış" ile temizlenir
   const STORE_KEY = "ym_session_v1";
   let key = null; // ana anahtar (MK)
 
