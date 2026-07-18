@@ -25,6 +25,14 @@
     return Math.round(Number(n)).toLocaleString("tr-TR");
   }
 
+  // "18.06.2026 10:00" -> 202606181000 (siralama icin karsilastirilabilir sayi)
+  function tarihKey(t) {
+    const m = String(t || "").match(/(\d{2})\.(\d{2})\.(\d{4})(?:\s+(\d{2}):(\d{2}))?/);
+    if (!m) return 0;
+    const dd = m[1], mm = m[2], yyyy = m[3], hh = m[4] || "00", mi = m[5] || "00";
+    return Number(yyyy + mm + dd + hh + mi);
+  }
+
   function matches(ilan) {
     if (ilan.pasif) return false;
     if (activeFilter === "acik" && ilan.durum !== "acik") return false;
@@ -47,6 +55,7 @@
 
   function render() {
     const visible = ILANLAR.filter(matches);
+    visible.sort((a, b) => tarihKey(b.tarih) - tarihKey(a.tarih));
     countEl.textContent = visible.length + " ilan listeleniyor";
     emptyEl.hidden = visible.length > 0;
 
