@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+
+# Rapor üretmek için geçici çözülen düz belgeler (tools/rapor-kaynak.mjs) — asla gitmez
+dosyalar/**/_kaynak/
+
+# Şifresiz (düz) yaklaşık maliyet belgeleri depoya GÖNDERİLMEZ; sadece .enc gider
+dosyalar/**/*.pdf
+dosyalar/**/*.xlsx
+dosyalar/**/*.xls
+dosyalar/**/*.docx
+dosyalar/**/*.doc
+dosyalar/**/*.zip

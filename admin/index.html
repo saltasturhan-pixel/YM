@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YM — Yönetim Paneli</title>
+<style>
+  :root{--bg:#f4f5f7;--card:#fff;--text:#1a1d23;--muted:#8a909c;--border:#e6e8ec;--blue:#2563eb;--blue-d:#1d4ed8;--red:#c0392b;--green:#1e7f3f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+  header{background:var(--text);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+  header .logo{width:34px;height:34px;border-radius:9px;background:var(--blue);display:grid;place-items:center;font-weight:800}
+  header h1{font-size:16px;font-weight:700;flex:1}
+  header .durum{font-size:13px;opacity:.8}
+  .container{max-width:1000px;margin:0 auto;padding:20px}
+  .btn{border:0;border-radius:9px;padding:9px 16px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;background:var(--blue);color:#fff}
+  .btn:hover{background:var(--blue-d)}
+  .btn.gri{background:#e7e9ee;color:#3d434f}.btn.gri:hover{background:#d8dbe2}
+  .btn.kirmizi{background:#fdeaea;color:var(--red)}.btn.kirmizi:hover{background:#f8d7d7}
+  .btn.kucuk{padding:6px 11px;font-size:12.5px}
+  .btn:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.4)}
+  .btn:disabled:hover{background:var(--blue)}
+  .btn.gri:disabled:hover{background:#e7e9ee}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px}
+  .panel h2{font-size:15px;margin-bottom:12px}
+  textarea{width:100%;min-height:90px;border:1px solid var(--border);border-radius:9px;padding:10px;font:inherit;font-size:13px;resize:vertical}
+  input[type=password]{border:1px solid var(--border);border-radius:9px;padding:10px 12px;font:inherit;font-size:14px;width:240px}
+  .ihale{border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;background:var(--card)}
+  .ihale.pasif{opacity:.55;background:#fafafa}
+  .ihale .ust{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .rozet{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;background:#eceef2;color:#3d434f}
+  .rozet.acik{background:#e7f6ec;color:var(--green)}
+  .rozet.pasif{background:#fdeaea;color:var(--red)}
+  .ihale .no{font-weight:800}
+  .ihale .ad{font-weight:700;margin:6px 0;font-size:14.5px}
+  .ihale .kurum{color:var(--muted);font-size:12.5px;text-transform:uppercase;margin-bottom:8px}
+  .aksiyon{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .dosyalar{margin-top:10px;border-top:1px dashed var(--border);padding-top:10px}
+  .dosya{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:13px}
+  .dosya .tip{font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:2px 6px;background:var(--muted)}
+  .tip.pdf{background:#e04444}.tip.xlsx,.tip.xls{background:#1e7f3f}.tip.docx,.tip.doc{background:#2563eb}.tip.zip{background:#8a5cf6}
+  .dosya .ad{flex:1}
+  .ekle-satir{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .tutar-satir{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0;padding:8px;background:#f3faf5;border:1px solid #d6ecdd;border-radius:8px;font-size:13px}
+  .tutar-satir input{border:1px solid var(--border);border-radius:7px;padding:6px 9px;font:inherit;font-size:13px;width:200px}
+  .tutar-satir select{border:1px solid var(--border);border-radius:7px;padding:6px;font:inherit}
+  .rapor-kutu{margin-top:10px;border-top:1px dashed var(--border);padding-top:10px}
+  .rapor-form{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+  .rapor-form label{font-size:12.5px;font-weight:700;color:#3d434f;margin-top:6px}
+  .rapor-form label small{font-weight:500;color:var(--muted)}
+  .rapor-form textarea{min-height:70px}
+  .bos{color:var(--muted);font-size:12.5px;padding:4px 0}
+  #cikti{white-space:pre-wrap;background:#0f1320;color:#cdd3e0;border-radius:9px;padding:12px;font-size:12px;max-height:200px;overflow:auto;display:none;margin-top:10px}
+  .gizle{display:none}
+  .ust-aksiyon{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+  .ipucu{font-size:12px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">YM</div>
+  <h1>Yönetim Paneli</h1>
+  <span class="durum" id="durum"></span>
+</header>
+
+<div class="container">
+
+  <!-- Giriş -->
+  <div class="panel" id="girisPanel">
+    <h2>Giriş</h2>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <input type="password" id="parola" placeholder="Yönetici parolası" autofocus>
+      <button class="btn" onclick="giris()">Giriş</button>
+      <span id="girisHata" style="color:var(--red);font-size:13px"></span>
+    </div>
+    <div class="ipucu">Site parolalarından biriyle girilir (indirme yetkisi olan parola önerilir).</div>
+  </div>
+
+  <div id="anaPanel" class="gizle">
+    <div class="ust-aksiyon">
+      <button class="btn gri kucuk" onclick="yukle()">Yenile</button>
+      <span class="ipucu" id="sayac"></span>
+    </div>
+
+    <!-- Yeni ihale -->
+    <div class="panel">
+      <h2>Yeni ihale kartı (EKAP inspect yapıştır)</h2>
+      <textarea id="inspect" placeholder="EKAP kart inspect (HTML) içeriğini buraya yapıştır..."></textarea>
+      <div style="margin-top:8px"><button class="btn" onclick="ihaleEkle()">Kart oluştur</button></div>
+    </div>
+
+    <div id="liste"></div>
+    <pre id="cikti"></pre>
+  </div>
+</div>
+
+<script>
+let IHALELER = [];
+const $ = (id) => document.getElementById(id);
+
+async function api(yol, veri){
+  const r = await fetch(yol, veri ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(veri)} : {});
+  return r.json();
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+async function giris(){
+  const r = await api('/api/giris', {parola: $('parola').value});
+  if(!r.ok){ $('girisHata').textContent = r.hata || 'Hata'; return; }
+  $('girisPanel').classList.add('gizle');
+  $('anaPanel').classList.remove('gizle');
+  $('durum').textContent = 'Giriş yapıldı';
+  yukle();
+}
+
+async function yukle(){
+  const r = await api('/api/liste');
+  IHALELER = r.ihaleler || [];
+  ciz();
+}
+
+function ciz(){
+  $('sayac').textContent = IHALELER.length + ' ihale (' + IHALELER.filter(i=>i.pasif).length + ' pasif)';
+  $('liste').innerHTML = IHALELER.map(il => `
+    <div class="ihale ${il.pasif?'pasif':''}">
+      <div class="ust">
+        <span class="rozet ${il.durum==='acik'?'acik':''}">${esc(il.durumEtiket||'')}</span>
+        <span class="rozet">${esc(il.turEtiket||'')}</span>
+        ${il.pasif?'<span class="rozet pasif">PASİF</span>':''}
+        <div class="aksiyon">
+          <button class="btn kucuk" ${il.pasif?'':'disabled'} onclick="kartYayinla('${il.no}')" title="${il.pasif?'Canlıya al ve siteye gönder':'Zaten canlıda'}">⬆ Yayınla</button>
+          <button class="btn gri kucuk" ${il.pasif?'disabled':''} onclick="kartPasifeAl('${il.no}')" title="${il.pasif?'Zaten pasif':'Siteden kaldır'}">Pasife al</button>
+          <button class="btn kirmizi kucuk" onclick="ihaleSil('${il.no}','${esc(il.baslik).replace(/'/g,'')}')">Sil</button>
+        </div>
+      </div>
+      <div class="ad"><span class="no">${esc(il.no)}</span> &nbsp; ${esc(il.baslik)}</div>
+      <div class="kurum">${esc(il.kurum)} · ${esc(il.sehir)}, ${esc(il.tarih)}</div>
+      <div class="tutar-satir">
+        <span>Yaklaşık maliyet:</span>
+        <input type="text" id="t_${esc(il.no).replace('/','_')}" value="${il.tutar??''}" placeholder="örn. 245757672 (ondalıksız)">
+        <select id="pb_${esc(il.no).replace('/','_')}">
+          ${['TL','USD','EUR'].map(p=>`<option ${(il.paraBirimi||'TL')===p?'selected':''}>${p}</option>`).join('')}
+        </select>
+        <button class="btn kucuk" onclick="tutarKaydet('${il.no}')">Kaydet</button>
+        <span class="bos">(boş bırakırsan kartta görünmez)</span>
+      </div>
+      <div class="dosyalar">
+        ${(il.dosyalar||[]).map(d=>`
+          <div class="dosya">
+            <span class="tip ${esc(d.tip)}">${esc((d.tip||'').toUpperCase())}</span>
+            <span class="ad">${esc(d.ad)}</span>
+            <span style="color:var(--muted);font-size:12px">${esc(d.boyut)}</span>
+            <button class="btn kirmizi kucuk" onclick="dosyaSil('${il.no}','${esc(d.ad).replace(/'/g,'')}','${esc(d.tip)}')">Çıkar</button>
+          </div>`).join('') || '<div class="bos">Henüz dosya yok</div>'}
+        <div class="ekle-satir">
+          <input type="file" id="f_${esc(il.no).replace('/','_')}" multiple>
+          <button class="btn kucuk" id="btn_f_${esc(il.no).replace('/','_')}" onclick="dosyaEkle('${il.no}')">Dosya ekle</button>
+          <span class="bos">Birden fazla seçebilirsin</span>
+        </div>
+      </div>
+      <div class="rapor-kutu">
+        <button class="btn gri kucuk" type="button" onclick="raporAc('${il.no}')">📋 Rapor düzenle${il.rapor ? ' ✓' : ''}</button>
+        <div class="rapor-form gizle" id="rf_${esc(il.no).replace('/','_')}">
+          <label>Özet</label>
+          <textarea id="rozet_${esc(il.no).replace('/','_')}" placeholder="Kısa özet (1-3 cümle)">${esc((il.rapor&&il.rapor.ozet)||'')}</textarea>
+          <label>Yaklaşık Maliyeti Değiştirebilecek Kalemler <small>(her satır = bir madde)</small></label>
+          <textarea id="rkalem_${esc(il.no).replace('/','_')}" placeholder="Her satıra bir madde...">${esc(((il.rapor&&il.rapor.hususlar)||[]).join('\n'))}</textarea>
+          <label>Dikkat! <small>(her satır = bir madde)</small></label>
+          <textarea id="rdikkat_${esc(il.no).replace('/','_')}">${esc(((il.rapor&&il.rapor.canAlici)||[]).join('\n'))}</textarea>
+          <label>Tavsiyeler <small>(her satır = bir madde)</small></label>
+          <textarea id="rtavsiye_${esc(il.no).replace('/','_')}">${esc(((il.rapor&&il.rapor.tavsiyeler)||[]).join('\n'))}</textarea>
+          <div><button class="btn kucuk" onclick="raporKaydet('${il.no}')">Rapor kaydet</button></div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+async function tutarKaydet(ikn){
+  const key = ikn.replace('/','_');
+  const tutar = $('t_'+key).value;
+  const paraBirimi = $('pb_'+key).value;
+  const r = await api('/api/ihale-tutar', {ikn, tutar, paraBirimi});
+  if(!r.ok){ alert(r.hata||'Hata'); return; }
+  IHALELER = r.ihaleler; ciz();
+}
+
+function raporAc(ikn){
+  $('rf_'+ikn.replace('/','_')).classList.toggle('gizle');
+}
+async function raporKaydet(ikn){
+  const key = ikn.replace('/','_');
+  const satir = (id)=> $(id).value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const rapor = {
+    ozet: $('rozet_'+key).value.trim(),
+    hususlar: satir('rkalem_'+key),
+    canAlici: satir('rdikkat_'+key),
+    tavsiyeler: satir('rtavsiye_'+key)
+  };
+  const r = await api('/api/ihale-rapor', {ikn, rapor});
+  if(!r.ok){ alert(r.hata||'Hata'); return; }
+  IHALELER = r.ihaleler; ciz();
+  alert('Rapor kaydedildi ✓  ("Yayınla" ile canlıya gönderebilirsin)');
+}
+
+async function ihaleEkle(){
+  const inspect = $('inspect').value.trim();
+  if(!inspect){ alert('Inspect yapıştır'); return; }
+  const r = await api('/api/ihale-ekle', {inspect});
+  if(!r.ok){ alert(r.hata||'Hata'); return; }
+  $('inspect').value='';
+  IHALELER = r.ihaleler; ciz();
+  alert('Kart oluşturuldu: '+r.eklenen);
+}
+
+async function ihaleSil(ikn, ad){
+  if(!confirm('Bu ihale ve TÜM dosyaları silinsin mi?\n\n'+ikn+'\n'+ad)) return;
+  const r = await api('/api/ihale-sil', {ikn});
+  IHALELER = r.ihaleler; ciz();
+}
+
+async function kartYayinla(ikn){
+  if(!confirm('Bu kart canlıya alınıp siteye gönderilsin mi?')) return;
+  const r = await api('/api/ihale-durum', {ikn, pasif:false});
+  IHALELER = r.ihaleler; ciz();
+  await gonder();
+}
+async function kartPasifeAl(ikn){
+  if(!confirm('Bu kart siteden kaldırılıp güncellensin mi?')) return;
+  const r = await api('/api/ihale-durum', {ikn, pasif:true});
+  IHALELER = r.ihaleler; ciz();
+  await gonder();
+}
+
+async function dosyaEkle(ikn){
+  const key = ikn.replace('/','_');
+  const inp = $('f_'+key);
+  const btn = $('btn_f_'+key);
+  const files = [...(inp.files || [])];
+  if(!files.length){ alert('Dosya seç'); return; }
+  if(btn){ btn.disabled = true; }
+  let otomatikTutar = null;
+  let hata = null;
+  for(let i = 0; i < files.length; i++){
+    const f = files[i];
+    if(btn) btn.textContent = 'Yükleniyor ' + (i+1) + '/' + files.length + '…';
+    try{
+      const veri = await new Promise((res, rej)=>{
+        const fr = new FileReader();
+        fr.onload = () => res(fr.result);
+        fr.onerror = () => rej(new Error('Okunamadı: ' + f.name));
+        fr.readAsDataURL(f);
+      });
+      const r = await api('/api/dosya-ekle', {ikn, dosyaAdi:f.name, veri});
+      if(!r.ok){ hata = (r.hata || 'Hata') + ' (' + f.name + ')'; break; }
+      IHALELER = r.ihaleler;
+      if(r.otomatikTutar) otomatikTutar = r.otomatikTutar;
+    }catch(e){ hata = String(e.message || e); break; }
+  }
+  ciz();
+  if(hata) alert(hata);
+  else if(otomatikTutar) alert('Belgeden tutar otomatik bulundu: '+Number(otomatikTutar).toLocaleString('tr-TR')+'\nYanlışsa tutar kutusundan düzeltebilirsin.');
+}
+
+async function dosyaSil(ikn, ad, tip){
+  if(!confirm('Dosya çıkarılsın mı?\n'+ad+'.'+tip)) return;
+  const r = await api('/api/dosya-sil', {ikn, ad, tip});
+  IHALELER = r.ihaleler; ciz();
+}
+
+async function gonder(){
+  $('cikti').style.display='block'; $('cikti').textContent='Yayınlanıyor...';
+  const r = await api('/api/yayinla');
+  $('cikti').textContent = (r.ok?'✓ Gönderildi — site 1-2 dakikada güncellenir.\n\n':'⚠ Gönderilemedi:\n\n') + (r.log||'');
+  alert(r.ok ? 'Yayınlandı ✓  Site 1-2 dakikada güncellenir.' : 'Gönderilemedi. Ayrıntı sayfanın en altındaki kutuda.');
+}
+
+$('parola').addEventListener('keydown', e=>{ if(e.key==='Enter') giris(); });
+</script>
+</body>
+</html>

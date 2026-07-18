@@ -1,0 +1,3 @@
+Yaklaşık maliyet dosyalarını ihalenin İKN numarasıyla açılan klasöre koyun.
+Örnek: dosyalar/2026-963707/icmal.pdf  (İKN içindeki "/" yerine "-")
+Sonra: python3 tools/build_data.py

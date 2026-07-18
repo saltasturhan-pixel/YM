@@ -1,0 +1,19 @@
+{
+  "v": 2,
+  "entries": [
+    {
+      "label": "izleyici-v2",
+      "salt": "dprm2oANqthQicLUdSzM8A==",
+      "iter": 200000,
+      "wrapped": "oErhsmp4dM1pY76eTVoOco6uKmVDjlHN76m9iXBJwkF7fVRnbc63et5EpIA2YX43WOl5iLetD3sEjYy8",
+      "canDownload": false
+    },
+    {
+      "label": "indirici-v2",
+      "salt": "DP5dGK6cPHqw8hJBextAtA==",
+      "iter": 200000,
+      "wrapped": "FLCQEe5EuS5hSDhLYv9ZKIPcHE+xZs4uVaT50sNB7QpOFND6AQ3IJQ4FaK3SHBrx3aNzlz+o8VcNS6lX",
+      "canDownload": true
+    }
+  ]
+}
