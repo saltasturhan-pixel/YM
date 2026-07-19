@@ -78,6 +78,7 @@
       "<p>Bu portal şifrelidir. Görüntülemek için parolayı girin.</p>" +
       '<form id="lockForm"><input type="password" id="lockInput" placeholder="Parola" autocomplete="current-password" autofocus>' +
       '<button type="submit">Giriş</button></form>' +
+      '<p class="lock-disclaimer">Bu portaldaki hesaplar kamuya açık verilerle hazırlanmış bağımsız maliyet hesaplarıdır; idarelerin resmî yaklaşık maliyeti değildir.</p>' +
       '<div class="lock-error" id="lockError" hidden>Parola hatalı, tekrar deneyin.</div></div>';
     document.body.appendChild(gate);
     return gate;
