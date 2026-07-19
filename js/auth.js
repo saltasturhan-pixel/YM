@@ -85,6 +85,19 @@
   }
 
   async function start() {
+    // BAKIM MODU: gizli kod yoksa yalniz bakim ekrani goster
+    if ((location.search + location.hash).indexOf("ym8452kx71") === -1) {
+      document.body.classList.add("locked");
+      const g = document.createElement("div");
+      g.className = "lock-gate";
+      g.innerHTML = '<div class="lock-box"><div class="lock-logo">YM</div>' +
+        '<h1>Yaklaşık Maliyet Portalı</h1>' +
+        '<p>Kısa bir bakım çalışması yapıyoruz. En kısa sürede yeniden yayındayız.</p>' +
+        '<p class="lock-disclaimer">Bu portaldaki hesaplar kamuya açık verilerle hazırlanmış bağımsız maliyet hesaplarıdır; idarelerin resmî yaklaşık maliyeti değildir.</p></div>';
+      document.body.appendChild(g);
+      return;
+    }
+
     const restored = await restoreSession();
     if (restored) { enter(restored.mk, restored.canDownload); return; }
 
