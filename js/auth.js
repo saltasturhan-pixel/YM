@@ -92,7 +92,7 @@
       g.className = "lock-gate";
       g.innerHTML = '<div class="lock-box"><div class="lock-logo">YM</div>' +
         '<h1>Yaklaşık Maliyet Portalı</h1>' +
-        '<p>Kısa bir bakım çalışması yapıyoruz. En kısa sürede yeniden yayındayız.</p>' +
+        '<p>Çok yakında açılıyoruz. En kısa sürede yayındayız.</p>' +
         '<p class="lock-disclaimer">Bu portaldaki hesaplar kamuya açık verilerle hazırlanmış bağımsız maliyet hesaplarıdır; idarelerin resmî yaklaşık maliyeti değildir.</p></div>';
       document.body.appendChild(g);
       return;
