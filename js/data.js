@@ -1179,6 +1179,330 @@ const ILANLAR = [
     }
   },
   {
+    "no": "2026/1257666",
+    "baslik": "Muhtelif İlçelerdeki İçmesuyu Deposu, Terfi Binası ve Diğer Sanat Yapıları Tadilatı Yapım İşi",
+    "kurum": "MUĞLA SU VE KANALİZASYON İDARESİ GENEL MÜDÜRLÜĞÜ İŞLETMELER 2. BÖLGE DAİRESİ BAŞKANLIĞI",
+    "logoUrl": "https://ekapv2.kik.gov.tr/b_idare/assets/detsislogos/f21412dec2953730cb188fa47fc47d88e67ca0dcf26f6f5d31775ec5177199a8.png",
+    "sehir": "MUĞLA",
+    "tarih": "31.07.2026 11:00",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 23,
+    "kurumKisa": "MKİ",
+    "pasif": false,
+    "tutar": 25264788,
+    "paraBirimi": "TL",
+    "dosyalar": [
+      {
+        "ad": "00_Idareye_Sorulacak_Hususlar",
+        "tip": "pdf",
+        "boyut": "72 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/00_Idareye_Sorulacak_Hususlar.pdf"
+      },
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "210 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama",
+        "tip": "pdf",
+        "boyut": "72 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/02_FDU_Dogrulama.pdf"
+      },
+      {
+        "ad": "02_FDU_Dogrulama",
+        "tip": "xlsx",
+        "boyut": "10 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/02_FDU_Dogrulama.xlsx"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "pdf",
+        "boyut": "125 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/03_Analizler.pdf"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "xlsx",
+        "boyut": "21 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/03_Analizler.xlsx"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "pdf",
+        "boyut": "102 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/04_Alt_Analizler.pdf"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "xlsx",
+        "boyut": "15 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/04_Alt_Analizler.xlsx"
+      },
+      {
+        "ad": "2026-1257666_Yaklasik_Maliyet",
+        "tip": "xlsx",
+        "boyut": "21 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1257666/2026-1257666_Yaklasik_Maliyet.xlsx"
+      }
+    ],
+    "rapor": {
+      "ozet": "MUSKİ (Muğla), 6 ilçede (Menteşe, Ula, Yatağan, Kavaklıdere, Marmaris, Datça) 32 içme suyu deposu ile terfi merkezleri ve sanat yapılarının inşaat/mekanik/elektrik tadilatı. Yaklaşık maliyet 25.264.788 TL (KDV hariç), birim fiyat, süre 300 gün. İş geniş bir coğrafyaya yayılmış çok noktalı tadilat işidir.",
+      "hususlar": [
+        "[Yüksek] İdari Şartname md. 33.1.1'deki fiyat dışı unsur oranları sehven 1/100 ölçekte mi yayımlanmıştır; zeyilname ile düzeltilmesi düşünülüyor mu? Bu haliyle EKAP puanlamasında hiçbir istekli fiyat dışı unsur puanı (35) alamayabilir.",
+        "[Yüksek] POZ.066 himaye çiti birim fiyatına yapay çim kaplama (Teknik Şartname 3.7.16-17) dahil midir; dahilse tek yüz müdür? Cetvelde ayrı yapay çim kalemi yok (±1,2 milyon TL).",
+        "[Orta] Kalıp ve donatı kalemlerinin işaret ettiği beton dökümü hangi kalemden ödenecektir? Cetvelde beton temini/dökümü kalemi yok.",
+        "[Orta] POZ.072 galvanizli kafes tel çiti düz mü, yoksa yapay çim kaplamalı sistem midir; direkler dahil mi?",
+        "[Orta] Yalıtım şapının (POZ.063) kalınlığı, harç dozu ve su geçirimsizlik katkısı sarfiyatı için idarenin analizi paylaşılabilir mi? Poz tarifi dosyada yok.",
+        "[Düşük] POZ.075 kapsamındaki levha/tabelaların tip-adet-ebat dağılımı nedir?",
+        "[Düşük] 32 deponun ve terfi merkezlerinin ilçe-mahalle bazında dağılım listesi paylaşılabilir mi? Mobilizasyon planı için gerekli (Datça-Yatağan arası ~130 km).",
+        "[Düşük] İhalenin Kamu İhale Bülteni ilan tarihi hangi gündür? Aylık güncellenen kalemlerin dönemini belirler (±%1-2)."
+      ],
+      "canAlici": [
+        "Değerlendirme fiyat (65) + fiyat dışı unsur (35 puan); sınır değer katsayısı N=1,00 ve sınır değerin altındaki teklifler açıklama istenmeksizin REDDEDİLİR.",
+        "Dikkat: İdari Şartname'deki fiyat dışı unsur oranları 1/100 ölçekte görünüyor; bu haliyle puanlama sağlıklı işlemeyebilir — zeyilname beklenmeli.",
+        "Teklif birim fiyat; fiyat farkı YOK, avans YOK. Süre 300 gün. KDV hariçtir.",
+        "İş 6 ilçeye yayılmış 32 depo + terfi/sanat yapısı tadilatı; idare metrajlarda değişiklik yapabilir, yüklenici ilave bedel isteyemez — coğrafi dağılım riski yükleniciye ait.",
+        "Cetvelde kalıp+donatı var ama beton kalemi yok; beton gerekirse iş artışı/yeni birim fiyat konusu."
+      ],
+      "tavsiyeler": [
+        "Fiyat dışı unsur oran ölçeği (1/100) ve yapay çim kapsamı teklif öncesi netleştirilmeli; ikisi de puanı ve fiyatı doğrudan etkiler.",
+        "İş çok noktalı ve geniş coğrafyada; ilçe-depo dağılımı alınarak mobilizasyon ve nakliye planı buna göre kurulmalı.",
+        "Beton kaleminin eksikliği ve çit/yalıtım şapı kapsamı yazılı teyit alınmadan fiyatlandırılmamalı."
+      ]
+    }
+  },
+  {
+    "no": "2026/1278947",
+    "baslik": "DİCLE ÜNİVERSİTESİ 2026 YILI KAMPÜS GENELİ ALTYAPI İŞLERİ",
+    "kurum": "DİCLE ÜNİVERSİTESİ REKTÖRLÜĞÜ YAPI İŞLERİ VE TEKNİK DAİRE BAŞKANLIĞI",
+    "logoUrl": "https://ekapv2.kik.gov.tr/b_idare/assets/detsislogos/30c2ea664a6e62786e1ecea6a210e15ea991e491ca2c1afdc6a9398418cd9798.png",
+    "sehir": "DİYARBAKIR",
+    "tarih": "31.07.2026 11:00",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 24,
+    "kurumKisa": "DÜR",
+    "pasif": false,
+    "tutar": 21618366,
+    "paraBirimi": "TL",
+    "dosyalar": [
+      {
+        "ad": "00_Idareye_Sorulacak_Hususlar",
+        "tip": "pdf",
+        "boyut": "69 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/00_Idareye_Sorulacak_Hususlar.pdf"
+      },
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "193 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_Degerlendirme_ve_Sinir_Deger",
+        "tip": "pdf",
+        "boyut": "65 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/02_Degerlendirme_ve_Sinir_Deger.pdf"
+      },
+      {
+        "ad": "02_Degerlendirme_ve_Sinir_Deger",
+        "tip": "xlsx",
+        "boyut": "6 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/02_Degerlendirme_ve_Sinir_Deger.xlsx"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "pdf",
+        "boyut": "166 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/03_Analizler.pdf"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "xlsx",
+        "boyut": "41 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/03_Analizler.xlsx"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "pdf",
+        "boyut": "128 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/04_Alt_Analizler.pdf"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "xlsx",
+        "boyut": "27 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/04_Alt_Analizler.xlsx"
+      },
+      {
+        "ad": "2026-1278947_Yaklasik_Maliyet",
+        "tip": "xlsx",
+        "boyut": "27 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1278947/2026-1278947_Yaklasik_Maliyet.xlsx"
+      }
+    ],
+    "rapor": {
+      "ozet": "Dicle Üniversitesi (Diyarbakır) 2026 yılı kampüs geneli altyapı işleri. Yaklaşık maliyet 21.618.366 TL (KDV hariç), süre 120 gün, birim fiyat. Maliyetin ağırlığı elektrik-zayıf akım (%48) ve orta gerilim/TEDAŞ işleri (%17); inşaat %16, mekanik %9. İş büyük ölçüde elektrik/altyapı yenileme ve bakım-onarım kalemlerinden oluşur.",
+      "hususlar": [
+        "[Yüksek] Yangın hidroforu onarımında (MAK.ÖZ.2) değiştirilecek pompaların debi/basma yüksekliği ve hidrofor kapasitesi nedir? Kalem 498.768 TL; kapasiteye göre ±%50 değişir.",
+        "[Orta] Mekanik/elektrik demontaj (-D) bedelleri için öngörülen hesap esası montaj bedelinin %50'si midir? İdare analizi verilmemiş (~210.000 TL).",
+        "[Orta] Doğal gaz tadilat projelendirmesi (MAK.ÖZ.4) götürü kaleminin kapsamı (proje + brülör/tesisat + kazan-baca) için proforma/keşif öngörülmekte midir? Metraj verilmemiş (175.000 TL, ±%50).",
+        "[Orta] Piyasa fiyatlı özel kalemler (kasis, armatür, projektör, metal dedektör, bariyer kolları/kumandaları) için proforma toplanmış mıdır; esas alınan değerler paylaşılabilir mi? Toplam ~1,15 milyon TL.",
+        "[Düşük] Cetveldeki eski kazan poz numaralarının (25.202.4313/4415) güncel 2026 karşılıklarıyla (25.202.2113/3118) eşleştirilmesi teyit edilir mi? Tanımlar birebir (~1,22 milyon TL).",
+        "[Düşük] Yaklaşık maliyette nakliye için ayrı bir karşılık öngörülmüş müdür? Cetvelde ayrı nakliye kalemi yok, İdari Şartname md.25.1 teklife dahil sayar (~50-150 bin TL)."
+      ],
+      "canAlici": [
+        "Değerlendirme en düşük fiyat esasıdır; fiyat dışı unsur yoktur, sınır değer katsayısı N=1,20. Fiyat farkı hesaplanmaz, avans yok.",
+        "Süre yalnızca 120 takvim günü — sıkı bir program. KDV hariçtir.",
+        "İş ağırlıklı elektrik/orta gerilim (TEDAŞ) ve bakım-onarım (söküm-montaj) kalemlerinden oluşur; %48 elektrik-zayıf akım, %17 TEDAŞ.",
+        "Birçok kalem söküm + montaj (demontaj) ve resmî fiyatı olmayan özel/piyasa pozudur; proforma ile netleşir.",
+        "Yerli malı zorunlu; teminat 12 ay; iş artışı md.28.2 uygulanır."
+      ],
+      "tavsiyeler": [
+        "Yangın hidroforu pompa/hidrofor kapasitesi netleşmeden bu kalem fiyatlandırılmamalı (±%50 etki).",
+        "Resmî fiyatı olmayan özel/piyasa kalemleri (~1,15 milyon TL) için teklif öncesi proforma alınması önerilir.",
+        "Süre 120 gün kısa; söküm-montaj ağırlıklı iş programı ve ekip planı buna göre kurulmalı."
+      ]
+    }
+  },
+  {
+    "no": "2026/1221824",
+    "baslik": "Çukurova İlçesi Söğütlü Mahallesi 2 Etap 980 Adet Konut Bölgesi 32 Derslikli İlkokul Yapım İşi",
+    "kurum": "ADANA YATIRIM İZLEME VE KOORDİNASYON BAŞKANLIĞI YATIRIM İZLEME MÜDÜRLÜĞÜ",
+    "logoUrl": "https://ekapv2.kik.gov.tr/b_idare/assets/detsislogos/067b2a32b3929569bb5817e3ad60fb31378222dfe88002aa2a024fedff80c69b.png",
+    "sehir": "ADANA",
+    "tarih": "31.07.2026 14:00",
+    "durum": "acik",
+    "durumEtiket": "Katılıma Açık",
+    "tur": "yapim",
+    "turEtiket": "Yapım",
+    "kategori": "Açık",
+    "id": 25,
+    "kurumKisa": "AYİ",
+    "pasif": false,
+    "tutar": 214016552,
+    "paraBirimi": "TL",
+    "dosyalar": [
+      {
+        "ad": "00_Idareye_Sorulacak_Hususlar",
+        "tip": "pdf",
+        "boyut": "43 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/00_Idareye_Sorulacak_Hususlar.pdf"
+      },
+      {
+        "ad": "01_Yaklasik_Maliyet_Ozeti",
+        "tip": "pdf",
+        "boyut": "41 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/01_Yaklasik_Maliyet_Ozeti.pdf"
+      },
+      {
+        "ad": "02_Pursantaj_Dogrulama",
+        "tip": "pdf",
+        "boyut": "36 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/02_Pursantaj_Dogrulama.pdf"
+      },
+      {
+        "ad": "02_Pursantaj_Dogrulama",
+        "tip": "xlsx",
+        "boyut": "6 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/02_Pursantaj_Dogrulama.xlsx"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "pdf",
+        "boyut": "146 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/03_Analizler.pdf"
+      },
+      {
+        "ad": "03_Analizler",
+        "tip": "xlsx",
+        "boyut": "87 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/03_Analizler.xlsx"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "pdf",
+        "boyut": "168 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/04_Alt_Analizler.pdf"
+      },
+      {
+        "ad": "04_Alt_Analizler",
+        "tip": "xlsx",
+        "boyut": "67 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/04_Alt_Analizler.xlsx"
+      },
+      {
+        "ad": "2026_1221824_Yaklasik_Maliyet",
+        "tip": "xlsx",
+        "boyut": "86 KB",
+        "tarih": "19.07.2026",
+        "url": "dosyalar/2026-1221824/2026_1221824_Yaklasik_Maliyet.xlsx"
+      }
+    ],
+    "rapor": {
+      "ozet": "Adana Yatırım İzleme ve Koordinasyon Başkanlığı, Çukurova Söğütlü Mahallesi'nde 32 derslikli ilkokul (bodrum+zemin+3 kat, ~6.191 m²) anahtar teslimi götürü bedel yapımı. Yaklaşık maliyet 214.016.552 TL (KDV hariç), ≈34.570 TL/m², süre 400 gün. Maliyetin ağırlığı inşaat (%69); makina %15, elektrik %14, çevre düzenleme %2.",
+      "hususlar": [
+        "[Yüksek] Temel kazısının klas dağılımında Betonarme Mahal Listesi'ndeki '250 cm sert küskülük' notu mu, yoksa Zemin Etüt Raporu'ndaki 'kazının tamamı kolay kazınabilir' sonucu mu esas alınacaktır? Küskülük uygulanırsa ~+1,3 milyon TL.",
+        "[Yüksek] Statik projeye ait betonarme demir metraj icmali (donatı özeti) paylaşılabilir mi? Demir kalemleri ~22,9 milyon TL; icmal farklıysa ±%5 ≈ ±1,1 milyon TL.",
+        "[Orta] Çevre düzenleme imalatlarının uygulama sınırı hangi alandır — aplikasyon krokisindeki 33.592,98 m² saha mı, mimari paftadaki 7.621,40 m² parsel mi? Saha betonu ve çit miktarını belirler (~4,6 milyon TL'lik grup).",
+        "[Orta] Alüminyum giydirme cephe (İNŞ.ÖZEL-5) uygulanacak toplam cephe alanı kaç m²'dir? ±100 m² ≈ ±0,5 milyon TL.",
+        "[Orta] Saha betonu, statik paftadaki C25/30 + çift sıra çelik hasır detayına göre mi, yoksa cetvel/mahal listesindeki C20/25 + tek kat hasıra göre mi uygulanacaktır?",
+        "[Orta] Sığınak havalandırma santrali (NBC filtreli, HAV.TES.01) ve tarif hücresi boş bırakılan diğer 3 pozun teknik tarifleri paylaşılabilir mi? Resmî fiyatı yok, proforma gerekir.",
+        "[Orta] Jeneratör-trafo ruhsatlandırma (Toroslar EDAŞ) ve zemin tahrip (Adana AYKOME) bedelleri için esas alınacak tarifeler nedir? İhale dosyasında yok.",
+        "[Düşük] Pursantajdaki sıva üstü 30×30 LED armatür (35.170.1101) bu işte kullanılacak mı, hangi mahallerde kaç adet? Projede karşılığı bulunamadı.",
+        "[Düşük] CCTV kamera adedi plan paftasındaki 34 mü, kolon şemasındaki 32 mi; paratoner iniş iletkeni boyu ~60 m mi, 15-25 m mi esastır?"
+      ],
+      "canAlici": [
+        "İş anahtar teslimi götürü bedeldir; idare kalem metrajı vermez, miktar riski yükleniciye aittir.",
+        "Değerlendirme en düşük fiyat esasıdır; fiyat dışı unsur yoktur, N=1,00. Fiyat farkı hesaplanır.",
+        "Süre 400 takvim günü. KDV hariçtir. Brüt inşaat alanı ~6.191 m² (~34.570 TL/m²).",
+        "Zemin etüdü kazının tamamını 'kolay kazınabilir' veriyor; jet grout/kazık iyileştirme YOK, yalnız temel altı sıkıştırılmış çakıl yastık.",
+        "Maliyetin ~%69'u inşaat; en büyük belirsizlikler kazı klası ve betonarme demir metrajında.",
+        "Yerli malı zorunlu liste var; teminat süresi 18 ay."
+      ],
+      "tavsiyeler": [
+        "Kazı klası çelişkisi teklif öncesi netleştirilmeli; mahal listesi 'küskülük' derken zemin etüdü 'kolay kazı' diyor (~1,3 milyon TL fark).",
+        "Betonarme demir en büyük kalemlerdendir; idarenin donatı icmali alınarak metraj teyit edilmesi önerilir.",
+        "Sığınak NBC santrali ve resmî fiyatı olmayan özel pozlar için teklif öncesi üretici proforması alınması yerinde olur."
+      ]
+    }
+  },
+  {
     "no": "2026/1124610",
     "baslik": "Çanakkale Çan Yaykın Göleti His Pompa İstasyonu ve Regülasyon Havuzu",
     "kurum": "DEVLET SU İŞLERİ GENEL MÜDÜRLÜĞÜ DSİ 25. BÖLGE MÜDÜRLÜĞÜ",
@@ -1190,7 +1514,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 23,
+    "id": 26,
     "kurumKisa": "DİG",
     "pasif": false,
     "tutar": 20802834,
@@ -1283,7 +1607,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 24,
+    "id": 27,
     "kurumKisa": "BKİ",
     "pasif": false,
     "tutar": 73303227,
@@ -1376,7 +1700,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 25,
+    "id": 28,
     "kurumKisa": "MME",
     "pasif": false,
     "tutar": 67857207,
@@ -1478,7 +1802,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 26,
+    "id": 29,
     "kurumKisa": "TPA",
     "pasif": false,
     "tutar": 29994649,
@@ -1575,7 +1899,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 27,
+    "id": 30,
     "kurumKisa": "İBB",
     "pasif": false,
     "tutar": 23487451,
@@ -1664,7 +1988,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 28,
+    "id": 31,
     "kurumKisa": "AGS",
     "pasif": false,
     "tutar": 240456160,
@@ -1759,7 +2083,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 29,
+    "id": 32,
     "kurumKisa": "AKİ",
     "pasif": false,
     "tutar": 79426604,
@@ -1863,7 +2187,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Pazarlık (MD 21 E)",
-    "id": 30,
+    "id": 33,
     "kurumKisa": "İKİ",
     "pasif": false,
     "tutar": 481911158,
@@ -1954,7 +2278,7 @@ const ILANLAR = [
     "tur": "yapim",
     "turEtiket": "Yapım",
     "kategori": "Açık",
-    "id": 31,
+    "id": 34,
     "kurumKisa": "EMİ",
     "pasif": false,
     "tutar": 172930514,
